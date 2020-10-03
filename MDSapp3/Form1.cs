@@ -26,7 +26,13 @@ namespace MDSapp3
         {
             using (testDBEntities db = new testDBEntities() )
             {
-                dataGridView_U_M.DataSource = db.t_ItemU_M.ToList<t_ItemU_M>();
+
+                //SortableBindingList<t_ItemU_M> va = db.t_ItemU_M.ToList<t_ItemU_M>();
+                
+                
+                 dataGridView_U_M.DataSource = db.t_ItemU_M.ToList<t_ItemU_M>();
+
+                
 
             }
         }
@@ -92,6 +98,63 @@ namespace MDSapp3
                     
                 }
                 
+            }
+        }
+
+        private void button_U_M_Cancel_Click(object sender, EventArgs e)
+        {
+            ClearDataGridView_t_ItemU_M();
+            populateDataGridView_t_ItemU_M();
+
+        }
+
+        private void button_U_M_Edit_Click(object sender, EventArgs e)
+        {
+            model_t_ItemU_M.ItemU_M = textBox_ItemU_M.Text.Trim();
+            using (testDBEntities db = new testDBEntities())
+            {
+                
+                db.Entry(model_t_ItemU_M).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            ClearDataGridView_t_ItemU_M();
+            populateDataGridView_t_ItemU_M();
+            MessageBox.Show("Submitted Successfully");
+        }
+
+        private void button_U_M_Search_Click(object sender, EventArgs e)
+        {
+
+            using (testDBEntities db = new testDBEntities())
+            {
+
+                dataGridView_U_M.DataSource = db.t_ItemU_M.Where(x => x.ItemU_M.Contains(textBox_ItemU_M.Text)).ToList<t_ItemU_M>();
+
+            }
+            
+        }
+
+        private void button_U_M_Asc_Click(object sender, EventArgs e)
+        {
+            //dv= "ID  desc";
+
+            //dataGridView_U_M.Sort(dataGridView_U_M.Columns[1], ListSortDirection.Ascending);         putting error  -  why????
+            using (testDBEntities db = new testDBEntities())
+            {
+
+                dataGridView_U_M.DataSource = db.t_ItemU_M.OrderBy(x => x.ItemU_M).ToList<t_ItemU_M>();
+
+            }
+
+
+        }
+
+        private void button_U_M_Desc_Click(object sender, EventArgs e)
+        {
+            using (testDBEntities db = new testDBEntities())
+            {
+                dataGridView_U_M.DataSource = db.t_ItemU_M.OrderByDescending(x => x.ItemU_M).ToList<t_ItemU_M>();
+
             }
         }
     }

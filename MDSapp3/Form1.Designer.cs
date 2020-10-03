@@ -35,13 +35,17 @@
             this.label_U_M_Crud = new System.Windows.Forms.Label();
             this.panel_U_M = new System.Windows.Forms.Panel();
             this.button_U_M_Del = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.button_U_M_Edit = new System.Windows.Forms.Button();
             this.button_U_M_Add = new System.Windows.Forms.Button();
             this.button_U_M_Cancel = new System.Windows.Forms.Button();
             this.button_U_M_Search = new System.Windows.Forms.Button();
             this.label_U_M = new System.Windows.Forms.Label();
             this.textBox_ItemU_M = new System.Windows.Forms.TextBox();
             this.dataGridView_U_M = new System.Windows.Forms.DataGridView();
+            this.label_U_M_Sorting = new System.Windows.Forms.Label();
+            this.button_U_M_Asc = new System.Windows.Forms.Button();
+            this.button_U_M_Desc = new System.Windows.Forms.Button();
+            this.label_Slash = new System.Windows.Forms.Label();
             this.M_U_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.M_U_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
@@ -108,8 +112,12 @@
             // 
             // panel_U_M
             // 
+            this.panel_U_M.Controls.Add(this.label_Slash);
+            this.panel_U_M.Controls.Add(this.button_U_M_Desc);
+            this.panel_U_M.Controls.Add(this.button_U_M_Asc);
+            this.panel_U_M.Controls.Add(this.label_U_M_Sorting);
             this.panel_U_M.Controls.Add(this.button_U_M_Del);
-            this.panel_U_M.Controls.Add(this.button4);
+            this.panel_U_M.Controls.Add(this.button_U_M_Edit);
             this.panel_U_M.Controls.Add(this.button_U_M_Add);
             this.panel_U_M.Controls.Add(this.button_U_M_Cancel);
             this.panel_U_M.Controls.Add(this.button_U_M_Search);
@@ -117,7 +125,7 @@
             this.panel_U_M.Controls.Add(this.textBox_ItemU_M);
             this.panel_U_M.Location = new System.Drawing.Point(412, 57);
             this.panel_U_M.Name = "panel_U_M";
-            this.panel_U_M.Size = new System.Drawing.Size(694, 198);
+            this.panel_U_M.Size = new System.Drawing.Size(694, 334);
             this.panel_U_M.TabIndex = 1;
             // 
             // button_U_M_Del
@@ -132,14 +140,15 @@
             this.button_U_M_Del.UseVisualStyleBackColor = true;
             this.button_U_M_Del.Click += new System.EventHandler(this.button_U_M_Del_Click);
             // 
-            // button4
+            // button_U_M_Edit
             // 
-            this.button4.Location = new System.Drawing.Point(389, 140);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(91, 37);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button_U_M_Edit.Location = new System.Drawing.Point(389, 140);
+            this.button_U_M_Edit.Name = "button_U_M_Edit";
+            this.button_U_M_Edit.Size = new System.Drawing.Size(91, 37);
+            this.button_U_M_Edit.TabIndex = 5;
+            this.button_U_M_Edit.Text = "Edit";
+            this.button_U_M_Edit.UseVisualStyleBackColor = true;
+            this.button_U_M_Edit.Click += new System.EventHandler(this.button_U_M_Edit_Click);
             // 
             // button_U_M_Add
             // 
@@ -159,6 +168,7 @@
             this.button_U_M_Cancel.TabIndex = 3;
             this.button_U_M_Cancel.Text = "Cancel";
             this.button_U_M_Cancel.UseVisualStyleBackColor = true;
+            this.button_U_M_Cancel.Click += new System.EventHandler(this.button_U_M_Cancel_Click);
             // 
             // button_U_M_Search
             // 
@@ -168,6 +178,7 @@
             this.button_U_M_Search.TabIndex = 2;
             this.button_U_M_Search.Text = "Search";
             this.button_U_M_Search.UseVisualStyleBackColor = true;
+            this.button_U_M_Search.Click += new System.EventHandler(this.button_U_M_Search_Click);
             // 
             // label_U_M
             // 
@@ -187,6 +198,7 @@
             // 
             // dataGridView_U_M
             // 
+            this.dataGridView_U_M.AllowUserToDeleteRows = false;
             this.dataGridView_U_M.AllowUserToOrderColumns = true;
             this.dataGridView_U_M.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_U_M.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -199,21 +211,62 @@
             this.dataGridView_U_M.TabIndex = 0;
             this.dataGridView_U_M.DoubleClick += new System.EventHandler(this.dataGridView_U_M_DoubleClick);
             // 
+            // label_U_M_Sorting
+            // 
+            this.label_U_M_Sorting.AutoSize = true;
+            this.label_U_M_Sorting.Location = new System.Drawing.Point(32, 205);
+            this.label_U_M_Sorting.Name = "label_U_M_Sorting";
+            this.label_U_M_Sorting.Size = new System.Drawing.Size(74, 24);
+            this.label_U_M_Sorting.TabIndex = 7;
+            this.label_U_M_Sorting.Text = "Sorting:";
+            // 
+            // button_U_M_Asc
+            // 
+            this.button_U_M_Asc.Location = new System.Drawing.Point(36, 242);
+            this.button_U_M_Asc.Name = "button_U_M_Asc";
+            this.button_U_M_Asc.Size = new System.Drawing.Size(91, 33);
+            this.button_U_M_Asc.TabIndex = 8;
+            this.button_U_M_Asc.Text = "ASC";
+            this.button_U_M_Asc.UseVisualStyleBackColor = true;
+            this.button_U_M_Asc.Click += new System.EventHandler(this.button_U_M_Asc_Click);
+            // 
+            // button_U_M_Desc
+            // 
+            this.button_U_M_Desc.Location = new System.Drawing.Point(143, 242);
+            this.button_U_M_Desc.Name = "button_U_M_Desc";
+            this.button_U_M_Desc.Size = new System.Drawing.Size(80, 33);
+            this.button_U_M_Desc.TabIndex = 9;
+            this.button_U_M_Desc.Text = "DESC";
+            this.button_U_M_Desc.UseVisualStyleBackColor = true;
+            this.button_U_M_Desc.Click += new System.EventHandler(this.button_U_M_Desc_Click);
+            // 
+            // label_Slash
+            // 
+            this.label_Slash.AutoSize = true;
+            this.label_Slash.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label_Slash.Location = new System.Drawing.Point(126, 242);
+            this.label_Slash.Name = "label_Slash";
+            this.label_Slash.Size = new System.Drawing.Size(23, 33);
+            this.label_Slash.TabIndex = 10;
+            this.label_Slash.Text = "/";
+            // 
             // M_U_ID
             // 
+            this.M_U_ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.M_U_ID.DataPropertyName = "ID";
             this.M_U_ID.HeaderText = "ID";
             this.M_U_ID.Name = "M_U_ID";
             this.M_U_ID.ReadOnly = true;
+            this.M_U_ID.Visible = false;
             // 
             // M_U_Name
             // 
+            this.M_U_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.M_U_Name.DataPropertyName = "ItemU_M";
             this.M_U_Name.HeaderText = "Measurement Unit Name";
             this.M_U_Name.Name = "M_U_Name";
             this.M_U_Name.ReadOnly = true;
             this.M_U_Name.ToolTipText = "Kg, gram, etc ..";
-            this.M_U_Name.Width = 200;
             // 
             // Form1
             // 
@@ -242,17 +295,21 @@
         private System.Windows.Forms.TabPage tabPagItems;
         private System.Windows.Forms.TabPage tabPageMeasurementUnit;
         private System.Windows.Forms.DataGridView dataGridView_U_M;
-        private System.Windows.Forms.DataGridViewTextBoxColumn M_U_ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn M_U_Name;
         private System.Windows.Forms.Label label_U_M_Crud;
         private System.Windows.Forms.Panel panel_U_M;
         private System.Windows.Forms.Label label_U_M;
         private System.Windows.Forms.TextBox textBox_ItemU_M;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button_U_M_Edit;
         private System.Windows.Forms.Button button_U_M_Add;
         private System.Windows.Forms.Button button_U_M_Cancel;
         private System.Windows.Forms.Button button_U_M_Search;
         private System.Windows.Forms.Button button_U_M_Del;
+        private System.Windows.Forms.Label label_Slash;
+        private System.Windows.Forms.Button button_U_M_Desc;
+        private System.Windows.Forms.Button button_U_M_Asc;
+        private System.Windows.Forms.Label label_U_M_Sorting;
+        private System.Windows.Forms.DataGridViewTextBoxColumn M_U_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn M_U_Name;
     }
 }
 
