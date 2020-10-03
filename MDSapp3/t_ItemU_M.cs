@@ -14,6 +14,7 @@ namespace MDSapp3
     
     public partial class t_ItemU_M
     {
+        // amount like Kg, gram etc' .. 
         public long ID { get; set; }
         public string ItemU_M { get; set; }
     }

@@ -32,7 +32,12 @@
             this.tabPage_Order = new System.Windows.Forms.TabPage();
             this.tabPagItems = new System.Windows.Forms.TabPage();
             this.tabPageMeasurementUnit = new System.Windows.Forms.TabPage();
+            this.dataGridView_U_M = new System.Windows.Forms.DataGridView();
+            this.M_U_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.M_U_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
+            this.tabPageMeasurementUnit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_U_M)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -71,12 +76,40 @@
             // tabPageMeasurementUnit
             // 
             this.tabPageMeasurementUnit.BackColor = System.Drawing.Color.LightGray;
+            this.tabPageMeasurementUnit.Controls.Add(this.dataGridView_U_M);
             this.tabPageMeasurementUnit.Location = new System.Drawing.Point(4, 33);
             this.tabPageMeasurementUnit.Name = "tabPageMeasurementUnit";
             this.tabPageMeasurementUnit.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageMeasurementUnit.Size = new System.Drawing.Size(1124, 522);
             this.tabPageMeasurementUnit.TabIndex = 2;
             this.tabPageMeasurementUnit.Text = "Measurement Unit";
+            // 
+            // dataGridView_U_M
+            // 
+            this.dataGridView_U_M.AllowUserToOrderColumns = true;
+            this.dataGridView_U_M.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_U_M.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.M_U_ID,
+            this.M_U_Name});
+            this.dataGridView_U_M.Location = new System.Drawing.Point(57, 23);
+            this.dataGridView_U_M.Name = "dataGridView_U_M";
+            this.dataGridView_U_M.ReadOnly = true;
+            this.dataGridView_U_M.Size = new System.Drawing.Size(343, 462);
+            this.dataGridView_U_M.TabIndex = 0;
+            // 
+            // M_U_ID
+            // 
+            this.M_U_ID.DataPropertyName = "ID";
+            this.M_U_ID.HeaderText = "ID";
+            this.M_U_ID.Name = "M_U_ID";
+            // 
+            // M_U_Name
+            // 
+            this.M_U_Name.DataPropertyName = "ItemU_M";
+            this.M_U_Name.HeaderText = "Measurement Unit Name";
+            this.M_U_Name.Name = "M_U_Name";
+            this.M_U_Name.ToolTipText = "Kg, gram, etc ..";
+            this.M_U_Name.Width = 200;
             // 
             // Form1
             // 
@@ -87,7 +120,10 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MDS App";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl.ResumeLayout(false);
+            this.tabPageMeasurementUnit.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_U_M)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -98,6 +134,9 @@
         private System.Windows.Forms.TabPage tabPage_Order;
         private System.Windows.Forms.TabPage tabPagItems;
         private System.Windows.Forms.TabPage tabPageMeasurementUnit;
+        private System.Windows.Forms.DataGridView dataGridView_U_M;
+        private System.Windows.Forms.DataGridViewTextBoxColumn M_U_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn M_U_Name;
     }
 }
 
