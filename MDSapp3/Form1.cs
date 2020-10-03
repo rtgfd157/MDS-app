@@ -28,11 +28,8 @@ namespace MDSapp3
             {
 
                 //SortableBindingList<t_ItemU_M> va = db.t_ItemU_M.ToList<t_ItemU_M>();
-                
-                
+                         
                  dataGridView_U_M.DataSource = db.t_ItemU_M.ToList<t_ItemU_M>();
-
-                
 
             }
         }
@@ -40,9 +37,40 @@ namespace MDSapp3
         private void Form1_Load(object sender, EventArgs e)
         {
             populateDataGridView_t_ItemU_M();
+            populateDataGridViewItems();
 
         }
 
+        private void isDigit(string a)
+        {
+
+            var isNumeric = a.All(Char.IsDigit);
+            if (!isNumeric)
+            {
+                //MessageBox.Show("numeric");
+                textBoxItemsAmount.Text = "";
+                //MessageBox.Show("not numeric");
+
+            }
+
+        }
+
+
+        private void isFloat(string a)
+        {
+
+            float f;
+            if (!float.TryParse(a, out f))
+            {
+                // success! Use f here
+                textBoxItemsPrice.Text = "";
+
+            }
+        }
+
+       //   U_M functions tab
+       
+        
         private void button_U_M_Add_Click(object sender, EventArgs e)
         {
             model_t_ItemU_M.ItemU_M = textBox_ItemU_M.Text.Trim();
@@ -156,6 +184,51 @@ namespace MDSapp3
                 dataGridView_U_M.DataSource = db.t_ItemU_M.OrderByDescending(x => x.ItemU_M).ToList<t_ItemU_M>();
 
             }
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //  items  functions
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        void populateDataGridViewItems()
+        {
+            using (testDBEntities db = new testDBEntities())
+            {
+
+                //SortableBindingList<t_ItemU_M> va = db.t_ItemU_M.ToList<t_ItemU_M>();
+
+                dataGridViewItems.DataSource = db.t_Items.ToList<t_Items>();
+
+
+                List <t_ItemU_M> items_u_m = db.t_ItemU_M.ToList<t_ItemU_M>();
+
+
+
+                comboBoxMeasuremntUnit.DataSource = items_u_m;
+                comboBoxMeasuremntUnit.ValueMember = "ID";
+                comboBoxMeasuremntUnit.DisplayMember = "ItemU_M";
+
+            }
+        }
+
+        
+
+        private void textBoxItemsAmount_TextChanged(object sender, EventArgs e)
+            // check if text box is digit
+        {
+            isDigit(textBoxItemsAmount.Text);
+
+
+        }
+
+        
+
+        private void textBoxItemsPrice_TextChanged(object sender, EventArgs e)
+            // check if text box is float
+        {
+            isFloat(textBoxItemsPrice.Text);
+
         }
     }
 }
