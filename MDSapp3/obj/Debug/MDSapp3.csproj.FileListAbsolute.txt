@@ -13,3 +13,6 @@ C:\Users\Dell\source\repos\MDSapp3\MDSapp3\obj\Debug\MDSapp3.csproj.CoreCompileI
 C:\Users\Dell\source\repos\MDSapp3\MDSapp3\obj\Debug\MDSapp3.csproj.CopyComplete
 C:\Users\Dell\source\repos\MDSapp3\MDSapp3\obj\Debug\MDSapp3.exe
 C:\Users\Dell\source\repos\MDSapp3\MDSapp3\obj\Debug\MDSapp3.pdb
+C:\Users\Dell\source\repos\MDSapp3\MDSapp3\bin\Debug\System.Linq.Dynamic.Core.dll
+C:\Users\Dell\source\repos\MDSapp3\MDSapp3\bin\Debug\System.Linq.Dynamic.Core.pdb
+C:\Users\Dell\source\repos\MDSapp3\MDSapp3\bin\Debug\System.Linq.Dynamic.Core.xml

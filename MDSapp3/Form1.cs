@@ -8,13 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq.Dynamic;
+using MDSAppSharedFunction;
+//MDSappSharedFunction; 
 
 namespace MDSapp3
 {
     public partial class Form1 : Form
     {
-        t_Items model_t_Items = new t_Items();
+        t_Items model_t_Items = new t_Items(); // unit, price, amount , description
         t_ItemU_M model_t_ItemU_M = new t_ItemU_M(); // Kg, gram, etc ..
+
+        t_Orders model_t_Orders = new t_Orders();
 
 
         public Form1()
@@ -38,35 +43,12 @@ namespace MDSapp3
         {
             populateDataGridView_t_ItemU_M();
             populateDataGridViewItems();
+            populateDataGridView_t_Orders();
+
+
 
         }
 
-        private void isDigit(string a)
-        {
-
-            var isNumeric = a.All(Char.IsDigit);
-            if (!isNumeric)
-            {
-                //MessageBox.Show("numeric");
-                textBoxItemsAmount.Text = "";
-                //MessageBox.Show("not numeric");
-
-            }
-
-        }
-
-
-        private void isFloat(string a)
-        {
-
-            float f;
-            if (!float.TryParse(a, out f))
-            {
-                // success! Use f here
-                textBoxItemsPrice.Text = "";
-
-            }
-        }
 
        //   U_M functions tab
        
@@ -79,7 +61,6 @@ namespace MDSapp3
             {
                 
                 db.t_ItemU_M.Add(model_t_ItemU_M);
-                
                 db.SaveChanges();
                 ClearDataGridView_t_ItemU_M();
                 populateDataGridView_t_ItemU_M();
@@ -87,6 +68,8 @@ namespace MDSapp3
             }
 
         }
+
+        
 
         void ClearDataGridView_t_ItemU_M()
             /* Clear text box in M_u tab  */
@@ -199,15 +182,18 @@ namespace MDSapp3
                 //SortableBindingList<t_ItemU_M> va = db.t_ItemU_M.ToList<t_ItemU_M>();
 
                 dataGridViewItems.DataSource = db.t_Items.ToList<t_Items>();
-
-
                 List <t_ItemU_M> items_u_m = db.t_ItemU_M.ToList<t_ItemU_M>();
-
-
-
                 comboBoxMeasuremntUnit.DataSource = items_u_m;
                 comboBoxMeasuremntUnit.ValueMember = "ID";
                 comboBoxMeasuremntUnit.DisplayMember = "ItemU_M";
+
+
+                comboBoxItemsSorting.Items.Add("Order ID");
+                comboBoxItemsSorting.Items.Add("Item Amount");
+                comboBoxItemsSorting.Items.Add("Unit");
+                comboBoxItemsSorting.Items.Add("Item Description");
+
+
 
             }
         }
@@ -217,9 +203,9 @@ namespace MDSapp3
         private void textBoxItemsAmount_TextChanged(object sender, EventArgs e)
             // check if text box is digit
         {
-            isDigit(textBoxItemsAmount.Text);
 
-
+            //MDSHelperClass.MdsAppisDigit(textBoxItemsAmount);
+            MDSHelperClass.MdsAppisFloat(textBoxItemsPrice);
         }
 
         
@@ -227,8 +213,265 @@ namespace MDSapp3
         private void textBoxItemsPrice_TextChanged(object sender, EventArgs e)
             // check if text box is float
         {
-            isFloat(textBoxItemsPrice.Text);
+             MDSHelperClass.MdsAppisFloat(textBoxItemsPrice);
 
         }
+
+        private void buttonItemsAdd_Click(object sender, EventArgs e)
+        {
+            model_t_Items.ItemAmount = Convert.ToDecimal(textBoxItemsAmount.Text.Trim());
+            model_t_Items.ItemPrice = (decimal?)Convert.ToDouble(textBoxItemsPrice.Text.Trim());
+            model_t_Items.ItemU_M = comboBoxMeasuremntUnit.Text.Trim();
+            model_t_Items.ItemDescription = richTextBoxItemsDesc.Text.Trim();
+
+            long r = MDSHelperClass.LongRandom(10, 100000000000000050, new Random());
+            
+
+            //MessageBox.Show(guid);
+
+            model_t_Items.OrderID = r;  ;/// Convert.ToInt64(guid.ToString());
+
+            using (testDBEntities db = new testDBEntities())
+            {
+
+                db.t_Items.Add(model_t_Items);
+                db.SaveChanges();
+                ClearDataGridView_t_ItemU_M();
+                populateDataGridViewItems();
+
+            }
+
+        }
+
+        void ClearDataGridView_t_Items()
+        /* Clear text box in M_u tab  */
+        {
+            textBoxItemsAmount.Text = textBoxItemsPrice.Text = comboBoxMeasuremntUnit.Text= richTextBoxItemsDesc.Text =  "";
+        }
+
+        private void dataGridViewItems_DoubleClick(object sender, EventArgs e)
+        // poplate text box when data grid being pressed
+        {
+            if (dataGridViewItems.CurrentRow.Index != -1)
+            {
+                model_t_Items.ID = Convert.ToInt32(dataGridViewItems.CurrentRow.Cells["ID"].Value);
+                using (testDBEntities db = new testDBEntities())
+                {
+                    model_t_Items = db.t_Items.Where(x => x.ID == model_t_Items.ID).FirstOrDefault();
+                    
+                    textBoxItemsAmount.Text = model_t_Items.ItemAmount.ToString();
+                    textBoxItemsPrice.Text = model_t_Items.ItemPrice.ToString();
+                    comboBoxMeasuremntUnit.Text = model_t_Items.ItemU_M.ToString();
+                    richTextBoxItemsDesc.Text = model_t_Items.ItemDescription.ToString();
+                }
+
+            }
+        }
+
+        private void buttonItemsEdit_Click(object sender, EventArgs e)
+        {
+            model_t_Items.ItemAmount = Convert.ToDecimal(textBoxItemsAmount.Text.Trim()) ;
+            model_t_Items.ItemPrice= Convert.ToDecimal(textBoxItemsPrice.Text.Trim()); 
+            model_t_Items.ItemU_M = comboBoxMeasuremntUnit.Text.Trim();
+            model_t_Items.ItemDescription = richTextBoxItemsDesc.Text.Trim();
+
+            using (testDBEntities db = new testDBEntities())
+            {
+
+                db.Entry(model_t_Items).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            ClearDataGridView_t_Items();
+            populateDataGridViewItems();
+            MessageBox.Show("Submitted Successfully");
+        }
+
+        private void buttonIndexSearch_Click(object sender, EventArgs e)
+        {
+
+            //var ItemsAmount = Convert.ToDecimal(textBoxItemsAmount.Text.Trim()) ;
+            //model_t_Items.ItemAmount = Convert.ToDecimal(textBoxItemsAmount.Text.Trim());
+
+            // decimal va = (decimal)(decimal?)Convert.ToDouble(textBoxItemsAmount.Text.Trim());
+
+            Boolean amoumt_empty = true;
+
+            if (String.IsNullOrEmpty(textBoxItemsAmount.Text))
+            {
+
+            }
+            else
+            {
+                model_t_Items.ItemAmount = Convert.ToDecimal(textBoxItemsAmount.Text.Trim());
+                amoumt_empty = false;
+                MessageBox.Show(model_t_Items.ItemAmount.ToString());
+
+
+            }
+
+            using (testDBEntities db = new testDBEntities())
+            {
+                //  dataGridViewItems.DataSource = db.t_Items.Where(x => x.ItemDescription.Contains(richTextBoxItemsDesc.Text.Trim()) &&
+                //                                                  x.ItemAmount == 324).ToList<t_Items>(); 
+
+                dataGridViewItems.DataSource = db.t_Items.Where(x => x.ItemDescription.Contains(richTextBoxItemsDesc.Text.Trim() )).ToList<t_Items>(); 
+
+                // dgvFiltered.DataSource = gf.GroupTs.Where(x => x.G_Platform.Equals(platformCombo.Text) &&
+                // x.G_Type.Equals(typeCombo.Text) && x.fieldNameCombo.Text <= how to do this
+
+            }
+        }
+
+
+
+       
+
+        private void buttonItemsCancel_Click(object sender, EventArgs e)
+        {
+            populateDataGridViewItems();
+            ClearDataGridView_t_Items();
+        }
+
+        private void buttonItemsDel_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are You Sure to Delete this Record ?", "EF CRUD Operation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                using (testDBEntities db = new testDBEntities())
+                {
+                    var entry = db.Entry(model_t_ItemU_M);
+
+                    if (entry.State == EntityState.Detached)
+                        db.t_Items.Attach(model_t_Items);
+                    db.t_Items.Remove(model_t_Items);
+                    db.SaveChanges();
+                    populateDataGridViewItems();
+                    ClearDataGridView_t_Items();
+                    MessageBox.Show("Deleted Successfully");
+                }
+            }
+        }
+
+        private void buttonItemAsc_Click(object sender, EventArgs e)
+        {
+            //model_t_Items. comboBoxItemsSorting.Text;
+            using (testDBEntities db = new testDBEntities())
+            {
+
+
+
+                if (comboBoxItemsSorting.Text == "Order ID")
+                {
+                    dataGridViewItems.DataSource = db.t_Items.OrderBy(x => x.OrderID).ToList<t_Items>();
+
+                }
+                else if (comboBoxItemsSorting.Text == "Item Amount")
+                {
+                    dataGridViewItems.DataSource = db.t_Items.OrderBy(x => x.ItemAmount).ToList<t_Items>();
+                }
+                else if (comboBoxItemsSorting.Text == "Unit")
+                {
+                    dataGridViewItems.DataSource = db.t_Items.OrderBy(x => x.ItemU_M).ToList<t_Items>();
+                }
+                else if (comboBoxItemsSorting.Text == "Item Description")
+                {
+                    dataGridViewItems.DataSource = db.t_Items.OrderBy(x => x.ItemDescription).ToList<t_Items>();
+                }
+                else
+                {
+                    MessageBox.Show("choose Column to filter");
+                }
+
+            }
+        }
+
+        private void buttonItemsDesc_Click(object sender, EventArgs e)
+        {
+           // model_t_Items.ItemPrice
+            using (testDBEntities db = new testDBEntities())
+            {
+
+                
+
+                if  (comboBoxItemsSorting.Text == "Order ID")
+                {
+                    dataGridViewItems.DataSource = db.t_Items.OrderByDescending(x => x.OrderID).ToList<t_Items>();
+
+                }else if(comboBoxItemsSorting.Text == "Item Amount")
+                {
+                    dataGridViewItems.DataSource = db.t_Items.OrderByDescending(x => x.ItemAmount).ToList<t_Items>();
+                }
+                else if (comboBoxItemsSorting.Text == "Unit")
+                {
+                    dataGridViewItems.DataSource = db.t_Items.OrderByDescending(x => x.ItemU_M).ToList<t_Items>();
+                }
+                else if (comboBoxItemsSorting.Text == "Item Description")
+                {
+                    dataGridViewItems.DataSource = db.t_Items.OrderByDescending(x => x.ItemDescription).ToList<t_Items>();
+                }
+                else
+                {
+                    MessageBox.Show("choose Column to filter");
+                }
+
+            }
+
+
+        }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //  orders  functions
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        void populateDataGridView_t_Orders()
+        {
+            using (testDBEntities db = new testDBEntities())
+            {
+
+                //SortableBindingList<t_ItemU_M> va = db.t_ItemU_M.ToList<t_ItemU_M>();
+
+                dataGridViewOrders.DataSource = db.t_Orders.ToList<t_Orders>();
+
+            }
+        }
+
+        private void buttonOrdersAdd_Click(object sender, EventArgs e)
+        {
+
+
+            model_t_Orders.OrderDate = Convert.ToDateTime(dateTimePickerOrders.Text.Trim());
+            model_t_Orders.CustomerName = textBoxOrders_CustName.Text.Trim();
+            model_t_Orders.CustomerAddress = textBoxOrdersCust_Adress.Text.Trim();
+            model_t_Orders.CustomerPhone = textBoxCustomerPhone.Text.Trim();
+            model_t_Orders.TotalAmount = Convert.ToDecimal(textBoxOrdersToatl.Text.Trim());
+            model_t_Orders.RefaundAmount = Convert.ToDecimal(textBoxRefaundAmount.Text.Trim());
+
+            //model_t_Orders.CustomerCity = textBoxOrdersCustomerCity.Text.Trim();
+
+            long r = MDSHelperClass.LongRandom(10, 100000000000000050, new Random());
+
+
+            //MessageBox.Show(textBoxOrdersCustomerCity.Text.Trim());
+
+            model_t_Orders.OrderNumber = r.ToString(); ;/// Convert.ToInt64(guid.ToString());
+
+
+            MessageBox.Show(model_t_Orders.OrderNumber.ToString());
+
+
+            using (testDBEntities db = new testDBEntities())
+            {
+
+                db.t_Orders.Add(model_t_Orders);
+                db.SaveChanges();
+                ClearDataGridView_t_Orders();
+                populateDataGridView_t_Orders();
+
+            }
+        }
+
+       void ClearDataGridView_t_Orders()
+        {
+            textBoxRefaundAmount.Text = textBoxOrders_CustName.Text = textBoxOrdersCust_Adress.Text = textBoxCustomerPhone.Text = textBoxOrdersToatl.Text = "";
+
+        }
+
     }
 }
