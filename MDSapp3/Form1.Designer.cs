@@ -42,7 +42,7 @@
             this.buttonOrdersEdit = new System.Windows.Forms.Button();
             this.buttonOrdersAdd = new System.Windows.Forms.Button();
             this.buttonOrdersCancel = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.buttonOrdersSearch = new System.Windows.Forms.Button();
             this.textBoxRefaundAmount = new System.Windows.Forms.TextBox();
             this.labelOrdersRefaundAmount = new System.Windows.Forms.Label();
             this.textBoxOrdersToatl = new System.Windows.Forms.TextBox();
@@ -85,7 +85,7 @@
             this.buttonItemsEdit = new System.Windows.Forms.Button();
             this.buttonItemsAdd = new System.Windows.Forms.Button();
             this.buttonItemsCancel = new System.Windows.Forms.Button();
-            this.buttonIndexSearch = new System.Windows.Forms.Button();
+            this.buttonItemsSearch = new System.Windows.Forms.Button();
             this.dataGridViewItems = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OrderID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -148,7 +148,7 @@
             this.tabPage_Order.Controls.Add(this.buttonOrdersEdit);
             this.tabPage_Order.Controls.Add(this.buttonOrdersAdd);
             this.tabPage_Order.Controls.Add(this.buttonOrdersCancel);
-            this.tabPage_Order.Controls.Add(this.button7);
+            this.tabPage_Order.Controls.Add(this.buttonOrdersSearch);
             this.tabPage_Order.Controls.Add(this.textBoxRefaundAmount);
             this.tabPage_Order.Controls.Add(this.labelOrdersRefaundAmount);
             this.tabPage_Order.Controls.Add(this.textBoxOrdersToatl);
@@ -276,14 +276,15 @@
             this.buttonOrdersCancel.UseVisualStyleBackColor = true;
             this.buttonOrdersCancel.Click += new System.EventHandler(this.buttonOrdersCancel_Click);
             // 
-            // button7
+            // buttonOrdersSearch
             // 
-            this.button7.Location = new System.Drawing.Point(140, 432);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(91, 37);
-            this.button7.TabIndex = 29;
-            this.button7.Text = "Search";
-            this.button7.UseVisualStyleBackColor = true;
+            this.buttonOrdersSearch.Location = new System.Drawing.Point(140, 432);
+            this.buttonOrdersSearch.Name = "buttonOrdersSearch";
+            this.buttonOrdersSearch.Size = new System.Drawing.Size(91, 37);
+            this.buttonOrdersSearch.TabIndex = 29;
+            this.buttonOrdersSearch.Text = "Search";
+            this.buttonOrdersSearch.UseVisualStyleBackColor = true;
+            this.buttonOrdersSearch.Click += new System.EventHandler(this.buttonOrdersSearch_Click);
             // 
             // textBoxRefaundAmount
             // 
@@ -529,7 +530,7 @@
             this.panelItems.Controls.Add(this.buttonItemsEdit);
             this.panelItems.Controls.Add(this.buttonItemsAdd);
             this.panelItems.Controls.Add(this.buttonItemsCancel);
-            this.panelItems.Controls.Add(this.buttonIndexSearch);
+            this.panelItems.Controls.Add(this.buttonItemsSearch);
             this.panelItems.Location = new System.Drawing.Point(791, 50);
             this.panelItems.Name = "panelItems";
             this.panelItems.Size = new System.Drawing.Size(407, 485);
@@ -696,15 +697,15 @@
             this.buttonItemsCancel.UseVisualStyleBackColor = true;
             this.buttonItemsCancel.Click += new System.EventHandler(this.buttonItemsCancel_Click);
             // 
-            // buttonIndexSearch
+            // buttonItemsSearch
             // 
-            this.buttonIndexSearch.Location = new System.Drawing.Point(144, 251);
-            this.buttonIndexSearch.Name = "buttonIndexSearch";
-            this.buttonIndexSearch.Size = new System.Drawing.Size(91, 37);
-            this.buttonIndexSearch.TabIndex = 11;
-            this.buttonIndexSearch.Text = "Search";
-            this.buttonIndexSearch.UseVisualStyleBackColor = true;
-            this.buttonIndexSearch.Click += new System.EventHandler(this.buttonIndexSearch_Click);
+            this.buttonItemsSearch.Location = new System.Drawing.Point(144, 251);
+            this.buttonItemsSearch.Name = "buttonItemsSearch";
+            this.buttonItemsSearch.Size = new System.Drawing.Size(91, 37);
+            this.buttonItemsSearch.TabIndex = 11;
+            this.buttonItemsSearch.Text = "Search";
+            this.buttonItemsSearch.UseVisualStyleBackColor = true;
+            this.buttonItemsSearch.Click += new System.EventHandler(this.buttonItemsSearch_Click);
             // 
             // dataGridViewItems
             // 
@@ -1021,7 +1022,7 @@
         private System.Windows.Forms.Button buttonItemsEdit;
         private System.Windows.Forms.Button buttonItemsAdd;
         private System.Windows.Forms.Button buttonItemsCancel;
-        private System.Windows.Forms.Button buttonIndexSearch;
+        private System.Windows.Forms.Button buttonItemsSearch;
         private System.Windows.Forms.TextBox textBoxItemsPrice;
         private System.Windows.Forms.Label labelItemsPrice;
         private System.Windows.Forms.ComboBox comboBoxMeasuremntUnit;
@@ -1045,7 +1046,7 @@
         private System.Windows.Forms.Button buttonOrdersEdit;
         private System.Windows.Forms.Button buttonOrdersAdd;
         private System.Windows.Forms.Button buttonOrdersCancel;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button buttonOrdersSearch;
         private System.Windows.Forms.TextBox textBoxRefaundAmount;
         private System.Windows.Forms.Label labelOrdersRefaundAmount;
         private System.Windows.Forms.TextBox textBoxOrdersToatl;

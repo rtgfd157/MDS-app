@@ -45,8 +45,6 @@ namespace MDSapp3
             populateDataGridViewItems();
             populateDataGridView_t_Orders();
 
-
-
         }
 
 
@@ -286,39 +284,29 @@ namespace MDSapp3
             MessageBox.Show("Submitted Successfully");
         }
 
-        private void buttonIndexSearch_Click(object sender, EventArgs e)
+        private void buttonItemsSearch_Click(object sender, EventArgs e)
         {
 
-            //var ItemsAmount = Convert.ToDecimal(textBoxItemsAmount.Text.Trim()) ;
-            //model_t_Items.ItemAmount = Convert.ToDecimal(textBoxItemsAmount.Text.Trim());
+          
 
-            // decimal va = (decimal)(decimal?)Convert.ToDouble(textBoxItemsAmount.Text.Trim());
-
-            Boolean amoumt_empty = true;
-
-            if (String.IsNullOrEmpty(textBoxItemsAmount.Text))
-            {
-
-            }
-            else
+            if (!String.IsNullOrEmpty(textBoxItemsAmount.Text))
             {
                 model_t_Items.ItemAmount = Convert.ToDecimal(textBoxItemsAmount.Text.Trim());
-                amoumt_empty = false;
-                MessageBox.Show(model_t_Items.ItemAmount.ToString());
+               
+            }
 
-
+            if (!String.IsNullOrEmpty(textBoxItemsPrice.Text))
+            {
+                model_t_Items.ItemPrice = Convert.ToDecimal(textBoxItemsPrice.Text.Trim());
             }
 
             using (testDBEntities db = new testDBEntities())
             {
-                //  dataGridViewItems.DataSource = db.t_Items.Where(x => x.ItemDescription.Contains(richTextBoxItemsDesc.Text.Trim()) &&
-                //                                                  x.ItemAmount == 324).ToList<t_Items>(); 
-
-                dataGridViewItems.DataSource = db.t_Items.Where(x => x.ItemDescription.Contains(richTextBoxItemsDesc.Text.Trim() )).ToList<t_Items>(); 
-
-                // dgvFiltered.DataSource = gf.GroupTs.Where(x => x.G_Platform.Equals(platformCombo.Text) &&
-                // x.G_Type.Equals(typeCombo.Text) && x.fieldNameCombo.Text <= how to do this
-
+               
+                dataGridViewItems.DataSource = db.t_Items
+                                .Where(x => x.ItemAmount == model_t_Items.ItemAmount || x.ItemDescription.Contains(richTextBoxItemsDesc.Text.Trim())
+                                || x.ItemPrice == model_t_Items.ItemPrice || x.ItemU_M.Equals(comboBoxMeasuremntUnit.Text.Trim()))
+                                .ToList<t_Items>();
             }
         }
 
@@ -353,7 +341,7 @@ namespace MDSapp3
 
         private void buttonItemAsc_Click(object sender, EventArgs e)
         {
-            //model_t_Items. comboBoxItemsSorting.Text;
+
             using (testDBEntities db = new testDBEntities())
             {
 
@@ -646,6 +634,42 @@ namespace MDSapp3
                     MessageBox.Show("choose Column to filter");
                 }
 
+            }
+        }
+
+        private void buttonOrdersSearch_Click(object sender, EventArgs e)
+        {
+
+
+
+            if (!String.IsNullOrEmpty(textBoxRefaundAmount.Text))
+            {
+                model_t_Orders.RefaundAmount = Convert.ToDecimal(textBoxRefaundAmount.Text.Trim());
+
+            }
+
+            if (!String.IsNullOrEmpty(textBoxOrdersToatl.Text))
+            {
+
+                model_t_Orders.TotalAmount = Convert.ToDecimal(textBoxOrdersToatl.Text.Trim());
+            }
+
+
+
+            using (testDBEntities db = new testDBEntities())
+            {
+                //model_t_Orders.OrderDate = Convert.ToDateTime(dateTimePickerOrders.Text.Trim());
+                model_t_Orders.CustomerName = textBoxOrders_CustName.Text.Trim();
+                model_t_Orders.CustomerAddress = textBoxOrdersCust_Adress.Text.Trim();
+                model_t_Orders.CustomerPhone = textBoxCustomerPhone.Text.Trim();
+                
+                model_t_Orders.CustomerCity = textBoxOrdersCustomerCity.Text.Trim();
+
+                dataGridViewItems.DataSource = db.t_Orders
+                                .Where(x => x.CustomerName.Contains(model_t_Orders.CustomerName) || x.CustomerAddress.Contains(textBoxOrdersCust_Adress.Text.Trim())
+                                || (x.CustomerPhone.Contains(textBoxCustomerPhone.Text.Trim()) ) || (x.TotalAmount == model_t_Orders.TotalAmount)
+                                || (x.RefaundAmount == model_t_Orders.RefaundAmount)  || x.CustomerCity.Contains(model_t_Orders.CustomerCity)
+                                ).ToList<t_Orders>();
             }
         }
     }
