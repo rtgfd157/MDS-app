@@ -358,7 +358,6 @@ namespace MDSapp3
             {
 
 
-
                 if (comboBoxItemsSorting.Text == "Order ID")
                 {
                     dataGridViewItems.DataSource = db.t_Items.OrderBy(x => x.OrderID).ToList<t_Items>();
@@ -429,12 +428,23 @@ namespace MDSapp3
 
                 dataGridViewOrders.DataSource = db.t_Orders.ToList<t_Orders>();
 
+
+                comboBoxOrdersSorting.Items.Add("Order Number");
+                comboBoxOrdersSorting.Items.Add("Customer Name");
+                comboBoxOrdersSorting.Items.Add("Customer Phone");
+                comboBoxOrdersSorting.Items.Add("Total Amount");
+                comboBoxOrdersSorting.Items.Add("Refaund Amount");
+                comboBoxOrdersSorting.Items.Add("Customer City");
+                comboBoxOrdersSorting.Items.Add("Customer Adress");
+                comboBoxOrdersSorting.Items.Add("Order Date");
+                
+
+
             }
         }
 
         private void buttonOrdersAdd_Click(object sender, EventArgs e)
         {
-
 
             model_t_Orders.OrderDate = Convert.ToDateTime(dateTimePickerOrders.Text.Trim());
             model_t_Orders.CustomerName = textBoxOrders_CustName.Text.Trim();
@@ -443,7 +453,7 @@ namespace MDSapp3
             model_t_Orders.TotalAmount = Convert.ToDecimal(textBoxOrdersToatl.Text.Trim());
             model_t_Orders.RefaundAmount = Convert.ToDecimal(textBoxRefaundAmount.Text.Trim());
 
-            //model_t_Orders.CustomerCity = textBoxOrdersCustomerCity.Text.Trim();
+            model_t_Orders.CustomerCity = textBoxOrdersCustomerCity.Text.Trim();
 
             long r = MDSHelperClass.LongRandom(10, 100000000000000050, new Random());
 
@@ -452,9 +462,7 @@ namespace MDSapp3
 
             model_t_Orders.OrderNumber = r.ToString(); ;/// Convert.ToInt64(guid.ToString());
 
-
             MessageBox.Show(model_t_Orders.OrderNumber.ToString());
-
 
             using (testDBEntities db = new testDBEntities())
             {
@@ -470,8 +478,175 @@ namespace MDSapp3
        void ClearDataGridView_t_Orders()
         {
             textBoxRefaundAmount.Text = textBoxOrders_CustName.Text = textBoxOrdersCust_Adress.Text = textBoxCustomerPhone.Text = textBoxOrdersToatl.Text = "";
+            textBoxOrdersCustomerCity.Text = "";
+        }
+
+        private void dataGridViewOrders_DoubleClick(object sender, EventArgs e)
+        {
+            if (dataGridViewOrders.CurrentRow.Index != -1)
+            {
+                model_t_Orders.ID = Convert.ToInt32(dataGridViewOrders.CurrentRow.Cells["_ID"].Value);
+                using (testDBEntities db = new testDBEntities())
+                {
+                    model_t_Orders = db.t_Orders.Where(x => x.ID == model_t_Orders.ID).FirstOrDefault();
+
+                    textBoxRefaundAmount.Text = model_t_Orders.RefaundAmount.ToString(); 
+                        textBoxOrders_CustName.Text = model_t_Orders.CustomerName;
+                    textBoxOrdersCust_Adress.Text = model_t_Orders.CustomerAddress;
+                    textBoxCustomerPhone.Text = model_t_Orders.CustomerPhone;
+                        textBoxOrdersToatl.Text = model_t_Orders.TotalAmount.ToString();
+
+                    dateTimePickerOrders.Text = model_t_Orders.OrderDate.ToString();
+                    textBoxOrdersCustomerCity.Text = model_t_Orders.CustomerCity;
+
+
+
+
+                }
+
+            }
+        }
+
+        private void buttonOrdersDel_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are You Sure to Delete this Record ?", "EF CRUD Operation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                using (testDBEntities db = new testDBEntities())
+                {
+                    var entry = db.Entry(model_t_Orders);
+
+                    if (entry.State == EntityState.Detached)
+                        db.t_Orders.Attach(model_t_Orders);
+                    db.t_Orders.Remove(model_t_Orders);
+                    db.SaveChanges();
+                    populateDataGridView_t_Orders();
+                    ClearDataGridView_t_Orders();
+                    MessageBox.Show("Deleted Successfully");
+                }
+            }
+
 
         }
 
+        private void buttonOrdersEdit_Click(object sender, EventArgs e)
+        {
+            
+
+            model_t_Orders.OrderDate = Convert.ToDateTime(dateTimePickerOrders.Text.Trim());
+            model_t_Orders.CustomerName = textBoxOrders_CustName.Text.Trim();
+            model_t_Orders.CustomerAddress = textBoxOrdersCust_Adress.Text.Trim();
+            model_t_Orders.CustomerPhone = textBoxCustomerPhone.Text.Trim();
+            model_t_Orders.TotalAmount = Convert.ToDecimal(textBoxOrdersToatl.Text.Trim());
+            model_t_Orders.RefaundAmount = Convert.ToDecimal(textBoxRefaundAmount.Text.Trim());
+            model_t_Orders.CustomerCity = textBoxOrdersCustomerCity.Text.Trim();
+
+            using (testDBEntities db = new testDBEntities())
+            {
+
+                db.Entry(model_t_Orders).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            populateDataGridView_t_Orders();
+            ClearDataGridView_t_Orders();
+            MessageBox.Show("Submitted Successfully");
+        }
+
+        private void buttonOrdersCancel_Click(object sender, EventArgs e)
+        {
+            populateDataGridView_t_Orders();
+            ClearDataGridView_t_Orders();
+        }
+
+        private void buttonOrderAsc_Click(object sender, EventArgs e)
+        {
+            using (testDBEntities db = new testDBEntities())
+            {
+                if (comboBoxOrdersSorting.Text == "Order Date")
+                {
+                    dataGridViewOrders.DataSource = db.t_Orders.OrderBy(x => x.OrderDate).ToList<t_Orders>();
+
+                }
+                else if (comboBoxOrdersSorting.Text == "Customer Name")
+                {
+                    dataGridViewOrders.DataSource = db.t_Orders.OrderBy(x => x.CustomerName).ToList<t_Orders>();
+                }
+                else if (comboBoxOrdersSorting.Text == "Customer Adress")
+                {
+                    dataGridViewOrders.DataSource = db.t_Orders.OrderBy(x => x.CustomerAddress).ToList<t_Orders>();
+                }
+                else if (comboBoxOrdersSorting.Text == "Customer Phone")
+                {
+                    dataGridViewOrders.DataSource = db.t_Orders.OrderBy(x => x.CustomerPhone).ToList<t_Orders>();
+                }
+                else if (comboBoxOrdersSorting.Text == "Total Amount")
+                {
+                    dataGridViewOrders.DataSource = db.t_Orders.OrderBy(x => x.TotalAmount).ToList<t_Orders>();
+                }
+                else if (comboBoxOrdersSorting.Text == "Refaund Amount")
+                {
+                    dataGridViewOrders.DataSource = db.t_Orders.OrderBy(x => x.RefaundAmount).ToList<t_Orders>();
+                }
+                else if (comboBoxOrdersSorting.Text == "Customer City")
+                {
+                    dataGridViewOrders.DataSource = db.t_Orders.OrderBy(x => x.CustomerCity).ToList<t_Orders>();
+                }
+                else if (comboBoxOrdersSorting.Text == "Order Number")
+                {
+                    dataGridViewOrders.DataSource = db.t_Orders.OrderBy(x => x.OrderNumber).ToList<t_Orders>();
+                }
+                else
+                {
+                    MessageBox.Show("choose Column to filter");
+                }
+
+            }
+        }
+
+        private void buttonOrderDesc_Click(object sender, EventArgs e)
+        {
+            using (testDBEntities db = new testDBEntities())
+            {
+                if (comboBoxOrdersSorting.Text == "Order Date")
+                {
+                    dataGridViewOrders.DataSource = db.t_Orders.OrderByDescending(x => x.OrderDate).ToList<t_Orders>();
+
+                }
+                else if (comboBoxOrdersSorting.Text == "Customer Name")
+                {
+                    dataGridViewOrders.DataSource = db.t_Orders.OrderByDescending(x => x.CustomerName).ToList<t_Orders>();
+                }
+                else if (comboBoxOrdersSorting.Text == "Customer Adress")
+                {
+                    dataGridViewOrders.DataSource = db.t_Orders.OrderByDescending(x => x.CustomerAddress).ToList<t_Orders>();
+                }
+                else if (comboBoxOrdersSorting.Text == "Customer Phone")
+                {
+                    dataGridViewOrders.DataSource = db.t_Orders.OrderByDescending(x => x.CustomerPhone).ToList<t_Orders>();
+                }
+                else if (comboBoxOrdersSorting.Text == "Total Amount")
+                {
+                    dataGridViewOrders.DataSource = db.t_Orders.OrderByDescending(x => x.TotalAmount).ToList<t_Orders>();
+                }
+                else if (comboBoxOrdersSorting.Text == "Refaund Amount")
+                {
+                    dataGridViewOrders.DataSource = db.t_Orders.OrderByDescending(x => x.RefaundAmount).ToList<t_Orders>();
+                }
+                else if (comboBoxOrdersSorting.Text == "Customer City")
+                {
+                    dataGridViewOrders.DataSource = db.t_Orders.OrderByDescending(x => x.CustomerCity).ToList<t_Orders>();
+                }
+                else if (comboBoxOrdersSorting.Text == "Order Number")
+                {
+                    dataGridViewOrders.DataSource = db.t_Orders.OrderByDescending(x => x.OrderNumber).ToList<t_Orders>();
+                }
+
+                
+                else
+                {
+                    MessageBox.Show("choose Column to filter");
+                }
+
+            }
+        }
     }
 }

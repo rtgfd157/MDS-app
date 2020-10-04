@@ -28,18 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_Order = new System.Windows.Forms.TabPage();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBoxOrdersCustomerCity = new System.Windows.Forms.TextBox();
+            this.labelOrdersCustCity = new System.Windows.Forms.Label();
+            this.comboBoxOrdersSorting = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonOrderDesc = new System.Windows.Forms.Button();
+            this.buttonOrderAsc = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.buttonOrdersDel = new System.Windows.Forms.Button();
+            this.buttonOrdersEdit = new System.Windows.Forms.Button();
             this.buttonOrdersAdd = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.buttonOrdersCancel = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.textBoxRefaundAmount = new System.Windows.Forms.TextBox();
             this.labelOrdersRefaundAmount = new System.Windows.Forms.Label();
@@ -108,8 +110,6 @@
             this.dataGridView_U_M = new System.Windows.Forms.DataGridView();
             this.M_U_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.M_U_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBoxOrdersCustomerCity = new System.Windows.Forms.TextBox();
-            this.labelOrdersCustCity = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPage_Order.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).BeginInit();
@@ -139,15 +139,15 @@
             this.tabPage_Order.BackColor = System.Drawing.Color.PaleTurquoise;
             this.tabPage_Order.Controls.Add(this.textBoxOrdersCustomerCity);
             this.tabPage_Order.Controls.Add(this.labelOrdersCustCity);
-            this.tabPage_Order.Controls.Add(this.comboBox1);
+            this.tabPage_Order.Controls.Add(this.comboBoxOrdersSorting);
             this.tabPage_Order.Controls.Add(this.label3);
-            this.tabPage_Order.Controls.Add(this.button1);
-            this.tabPage_Order.Controls.Add(this.button2);
+            this.tabPage_Order.Controls.Add(this.buttonOrderDesc);
+            this.tabPage_Order.Controls.Add(this.buttonOrderAsc);
             this.tabPage_Order.Controls.Add(this.label4);
-            this.tabPage_Order.Controls.Add(this.button3);
-            this.tabPage_Order.Controls.Add(this.button4);
+            this.tabPage_Order.Controls.Add(this.buttonOrdersDel);
+            this.tabPage_Order.Controls.Add(this.buttonOrdersEdit);
             this.tabPage_Order.Controls.Add(this.buttonOrdersAdd);
-            this.tabPage_Order.Controls.Add(this.button6);
+            this.tabPage_Order.Controls.Add(this.buttonOrdersCancel);
             this.tabPage_Order.Controls.Add(this.button7);
             this.tabPage_Order.Controls.Add(this.textBoxRefaundAmount);
             this.tabPage_Order.Controls.Add(this.labelOrdersRefaundAmount);
@@ -169,13 +169,31 @@
             this.tabPage_Order.TabIndex = 0;
             this.tabPage_Order.Text = "Order";
             // 
-            // comboBox1
+            // textBoxOrdersCustomerCity
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(493, 438);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(148, 32);
-            this.comboBox1.TabIndex = 38;
+            this.textBoxOrdersCustomerCity.AcceptsReturn = true;
+            this.textBoxOrdersCustomerCity.Location = new System.Drawing.Point(1082, 397);
+            this.textBoxOrdersCustomerCity.Name = "textBoxOrdersCustomerCity";
+            this.textBoxOrdersCustomerCity.Size = new System.Drawing.Size(122, 29);
+            this.textBoxOrdersCustomerCity.TabIndex = 40;
+            // 
+            // labelOrdersCustCity
+            // 
+            this.labelOrdersCustCity.AutoSize = true;
+            this.labelOrdersCustCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelOrdersCustCity.Location = new System.Drawing.Point(957, 396);
+            this.labelOrdersCustCity.Name = "labelOrdersCustCity";
+            this.labelOrdersCustCity.Size = new System.Drawing.Size(131, 24);
+            this.labelOrdersCustCity.TabIndex = 39;
+            this.labelOrdersCustCity.Text = "Customer City:";
+            // 
+            // comboBoxOrdersSorting
+            // 
+            this.comboBoxOrdersSorting.FormattingEnabled = true;
+            this.comboBoxOrdersSorting.Location = new System.Drawing.Point(493, 438);
+            this.comboBoxOrdersSorting.Name = "comboBoxOrdersSorting";
+            this.comboBoxOrdersSorting.Size = new System.Drawing.Size(148, 32);
+            this.comboBoxOrdersSorting.TabIndex = 38;
             // 
             // label3
             // 
@@ -187,23 +205,25 @@
             this.label3.TabIndex = 37;
             this.label3.Text = "/";
             // 
-            // button1
+            // buttonOrderDesc
             // 
-            this.button1.Location = new System.Drawing.Point(769, 438);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(80, 33);
-            this.button1.TabIndex = 36;
-            this.button1.Text = "DESC";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonOrderDesc.Location = new System.Drawing.Point(769, 438);
+            this.buttonOrderDesc.Name = "buttonOrderDesc";
+            this.buttonOrderDesc.Size = new System.Drawing.Size(80, 33);
+            this.buttonOrderDesc.TabIndex = 36;
+            this.buttonOrderDesc.Text = "DESC";
+            this.buttonOrderDesc.UseVisualStyleBackColor = true;
+            this.buttonOrderDesc.Click += new System.EventHandler(this.buttonOrderDesc_Click);
             // 
-            // button2
+            // buttonOrderAsc
             // 
-            this.button2.Location = new System.Drawing.Point(647, 438);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(91, 33);
-            this.button2.TabIndex = 35;
-            this.button2.Text = "ASC";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonOrderAsc.Location = new System.Drawing.Point(647, 438);
+            this.buttonOrderAsc.Name = "buttonOrderAsc";
+            this.buttonOrderAsc.Size = new System.Drawing.Size(91, 33);
+            this.buttonOrderAsc.TabIndex = 35;
+            this.buttonOrderAsc.Text = "ASC";
+            this.buttonOrderAsc.UseVisualStyleBackColor = true;
+            this.buttonOrderAsc.Click += new System.EventHandler(this.buttonOrderAsc_Click);
             // 
             // label4
             // 
@@ -214,25 +234,27 @@
             this.label4.TabIndex = 34;
             this.label4.Text = "Sorting:";
             // 
-            // button3
+            // buttonOrdersDel
             // 
-            this.button3.ForeColor = System.Drawing.Color.DarkRed;
-            this.button3.Location = new System.Drawing.Point(327, 432);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(80, 37);
-            this.button3.TabIndex = 33;
-            this.button3.Text = "Delete";
-            this.button3.UseCompatibleTextRendering = true;
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonOrdersDel.ForeColor = System.Drawing.Color.DarkRed;
+            this.buttonOrdersDel.Location = new System.Drawing.Point(327, 432);
+            this.buttonOrdersDel.Name = "buttonOrdersDel";
+            this.buttonOrdersDel.Size = new System.Drawing.Size(80, 37);
+            this.buttonOrdersDel.TabIndex = 33;
+            this.buttonOrdersDel.Text = "Delete";
+            this.buttonOrdersDel.UseCompatibleTextRendering = true;
+            this.buttonOrdersDel.UseVisualStyleBackColor = true;
+            this.buttonOrdersDel.Click += new System.EventHandler(this.buttonOrdersDel_Click);
             // 
-            // button4
+            // buttonOrdersEdit
             // 
-            this.button4.Location = new System.Drawing.Point(70, 432);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(64, 37);
-            this.button4.TabIndex = 32;
-            this.button4.Text = "Edit";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonOrdersEdit.Location = new System.Drawing.Point(70, 432);
+            this.buttonOrdersEdit.Name = "buttonOrdersEdit";
+            this.buttonOrdersEdit.Size = new System.Drawing.Size(64, 37);
+            this.buttonOrdersEdit.TabIndex = 32;
+            this.buttonOrdersEdit.Text = "Edit";
+            this.buttonOrdersEdit.UseVisualStyleBackColor = true;
+            this.buttonOrdersEdit.Click += new System.EventHandler(this.buttonOrdersEdit_Click);
             // 
             // buttonOrdersAdd
             // 
@@ -244,14 +266,15 @@
             this.buttonOrdersAdd.UseVisualStyleBackColor = true;
             this.buttonOrdersAdd.Click += new System.EventHandler(this.buttonOrdersAdd_Click);
             // 
-            // button6
+            // buttonOrdersCancel
             // 
-            this.button6.Location = new System.Drawing.Point(237, 432);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(84, 37);
-            this.button6.TabIndex = 30;
-            this.button6.Text = "Cancel";
-            this.button6.UseVisualStyleBackColor = true;
+            this.buttonOrdersCancel.Location = new System.Drawing.Point(237, 432);
+            this.buttonOrdersCancel.Name = "buttonOrdersCancel";
+            this.buttonOrdersCancel.Size = new System.Drawing.Size(84, 37);
+            this.buttonOrdersCancel.TabIndex = 30;
+            this.buttonOrdersCancel.Text = "Cancel";
+            this.buttonOrdersCancel.UseVisualStyleBackColor = true;
+            this.buttonOrdersCancel.Click += new System.EventHandler(this.buttonOrdersCancel_Click);
             // 
             // button7
             // 
@@ -384,6 +407,7 @@
             this.dataGridViewOrders.ReadOnly = true;
             this.dataGridViewOrders.Size = new System.Drawing.Size(1204, 334);
             this.dataGridViewOrders.TabIndex = 0;
+            this.dataGridViewOrders.DoubleClick += new System.EventHandler(this.dataGridViewOrders_DoubleClick);
             // 
             // _ID
             // 
@@ -396,58 +420,72 @@
             // OrderNumber
             // 
             this.OrderNumber.DataPropertyName = "OrderNumber";
+            this.OrderNumber.FillWeight = 200F;
             this.OrderNumber.HeaderText = "Order Number";
             this.OrderNumber.Name = "OrderNumber";
             this.OrderNumber.ReadOnly = true;
+            this.OrderNumber.Width = 200;
             // 
             // OrderDate
             // 
             this.OrderDate.DataPropertyName = "OrderDate";
-            this.OrderDate.HeaderText = "OrderDate";
+            this.OrderDate.HeaderText = "Order Date";
             this.OrderDate.Name = "OrderDate";
             this.OrderDate.ReadOnly = true;
             // 
             // CustomerName
             // 
             this.CustomerName.DataPropertyName = "CustomerName";
+            this.CustomerName.FillWeight = 150F;
             this.CustomerName.HeaderText = "Customer Name";
             this.CustomerName.Name = "CustomerName";
             this.CustomerName.ReadOnly = true;
+            this.CustomerName.Width = 150;
             // 
             // CustomerAddress
             // 
             this.CustomerAddress.DataPropertyName = "CustomerAddress";
+            this.CustomerAddress.FillWeight = 200F;
             this.CustomerAddress.HeaderText = "Customer Address";
             this.CustomerAddress.Name = "CustomerAddress";
             this.CustomerAddress.ReadOnly = true;
+            this.CustomerAddress.Width = 200;
             // 
             // CustomerPhone
             // 
             this.CustomerPhone.DataPropertyName = "CustomerPhone";
+            this.CustomerPhone.FillWeight = 150F;
             this.CustomerPhone.HeaderText = "Customer Phone";
             this.CustomerPhone.Name = "CustomerPhone";
             this.CustomerPhone.ReadOnly = true;
+            this.CustomerPhone.Width = 150;
             // 
             // TotalAmount
             // 
             this.TotalAmount.DataPropertyName = "TotalAmount";
+            this.TotalAmount.FillWeight = 120F;
             this.TotalAmount.HeaderText = "Total Amount";
             this.TotalAmount.Name = "TotalAmount";
             this.TotalAmount.ReadOnly = true;
+            this.TotalAmount.Width = 120;
             // 
             // RefaundAmount
             // 
             this.RefaundAmount.DataPropertyName = "RefaundAmount";
+            this.RefaundAmount.FillWeight = 120F;
             this.RefaundAmount.HeaderText = "Refaund Amount";
             this.RefaundAmount.Name = "RefaundAmount";
             this.RefaundAmount.ReadOnly = true;
+            this.RefaundAmount.Width = 120;
             // 
             // CustomerCity
             // 
             this.CustomerCity.DataPropertyName = "CustomerCity";
+            this.CustomerCity.FillWeight = 120F;
             this.CustomerCity.HeaderText = "Customer City";
             this.CustomerCity.Name = "CustomerCity";
             this.CustomerCity.ReadOnly = true;
+            this.CustomerCity.Width = 120;
             // 
             // tabPagItems
             // 
@@ -683,8 +721,8 @@
             this.dataGridViewItems.Location = new System.Drawing.Point(6, 6);
             this.dataGridViewItems.Name = "dataGridViewItems";
             this.dataGridViewItems.ReadOnly = true;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewItems.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewItems.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewItems.Size = new System.Drawing.Size(779, 529);
             this.dataGridViewItems.TabIndex = 0;
             this.dataGridViewItems.DoubleClick += new System.EventHandler(this.dataGridViewItems_DoubleClick);
@@ -920,24 +958,6 @@
             this.M_U_Name.ReadOnly = true;
             this.M_U_Name.ToolTipText = "Kg, gram, etc ..";
             // 
-            // textBoxOrdersCustomerCity
-            // 
-            this.textBoxOrdersCustomerCity.AcceptsReturn = true;
-            this.textBoxOrdersCustomerCity.Location = new System.Drawing.Point(1082, 397);
-            this.textBoxOrdersCustomerCity.Name = "textBoxOrdersCustomerCity";
-            this.textBoxOrdersCustomerCity.Size = new System.Drawing.Size(122, 29);
-            this.textBoxOrdersCustomerCity.TabIndex = 40;
-            // 
-            // labelOrdersCustCity
-            // 
-            this.labelOrdersCustCity.AutoSize = true;
-            this.labelOrdersCustCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelOrdersCustCity.Location = new System.Drawing.Point(957, 396);
-            this.labelOrdersCustCity.Name = "labelOrdersCustCity";
-            this.labelOrdersCustCity.Size = new System.Drawing.Size(131, 24);
-            this.labelOrdersCustCity.TabIndex = 39;
-            this.labelOrdersCustCity.Text = "Customer City:";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1016,24 +1036,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemDescription;
         private System.Windows.Forms.ComboBox comboBoxItemsSorting;
         private System.Windows.Forms.DataGridView dataGridViewOrders;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerPhone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RefaundAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerCity;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxOrdersSorting;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonOrderDesc;
+        private System.Windows.Forms.Button buttonOrderAsc;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button buttonOrdersDel;
+        private System.Windows.Forms.Button buttonOrdersEdit;
         private System.Windows.Forms.Button buttonOrdersAdd;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button buttonOrdersCancel;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.TextBox textBoxRefaundAmount;
         private System.Windows.Forms.Label labelOrdersRefaundAmount;
@@ -1049,6 +1060,15 @@
         private System.Windows.Forms.Label labelOrdersActions;
         private System.Windows.Forms.TextBox textBoxOrdersCustomerCity;
         private System.Windows.Forms.Label labelOrdersCustCity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerPhone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RefaundAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerCity;
     }
 }
 
