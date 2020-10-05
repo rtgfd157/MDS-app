@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_Order = new System.Windows.Forms.TabPage();
             this.textBoxOrdersCustomerCity = new System.Windows.Forms.TextBox();
@@ -110,6 +110,7 @@
             this.dataGridView_U_M = new System.Windows.Forms.DataGridView();
             this.M_U_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.M_U_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPageOrderItems = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.tabPage_Order.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).BeginInit();
@@ -126,6 +127,7 @@
             this.tabControl.Controls.Add(this.tabPage_Order);
             this.tabControl.Controls.Add(this.tabPagItems);
             this.tabControl.Controls.Add(this.tabPageMeasurementUnit);
+            this.tabControl.Controls.Add(this.tabPageOrderItems);
             this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.tabControl.HotTrack = true;
             this.tabControl.Location = new System.Drawing.Point(13, 13);
@@ -722,8 +724,8 @@
             this.dataGridViewItems.Location = new System.Drawing.Point(6, 6);
             this.dataGridViewItems.Name = "dataGridViewItems";
             this.dataGridViewItems.ReadOnly = true;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewItems.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewItems.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewItems.Size = new System.Drawing.Size(779, 529);
             this.dataGridViewItems.TabIndex = 0;
             this.dataGridViewItems.DoubleClick += new System.EventHandler(this.dataGridViewItems_DoubleClick);
@@ -959,6 +961,16 @@
             this.M_U_Name.ReadOnly = true;
             this.M_U_Name.ToolTipText = "Kg, gram, etc ..";
             // 
+            // tabPageOrderItems
+            // 
+            this.tabPageOrderItems.BackColor = System.Drawing.Color.LavenderBlush;
+            this.tabPageOrderItems.Location = new System.Drawing.Point(4, 33);
+            this.tabPageOrderItems.Name = "tabPageOrderItems";
+            this.tabPageOrderItems.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageOrderItems.Size = new System.Drawing.Size(1204, 541);
+            this.tabPageOrderItems.TabIndex = 3;
+            this.tabPageOrderItems.Text = "Order - Items";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1070,6 +1082,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn RefaundAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerCity;
+        private System.Windows.Forms.TabPage tabPageOrderItems;
     }
 }
 

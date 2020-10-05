@@ -22,7 +22,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="bigint" Nullable="false" />
+    <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="OrderNumber" Type="nchar" MaxLength="30" Nullable="false" />
     <Property Name="OrderDate" Type="date" Nullable="false" />
     <Property Name="CustomerName" Type="nchar" MaxLength="50" Nullable="false" />
