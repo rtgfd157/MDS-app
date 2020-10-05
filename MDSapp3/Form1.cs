@@ -155,7 +155,7 @@ namespace MDSapp3
                 comboBoxMeasuremntUnit.DisplayMember = "ItemU_M";
 
 
-                comboBoxItemsSorting.Items.Add("Order ID");
+                comboBoxItemsSorting.Items.Add("Items ID");
                 comboBoxItemsSorting.Items.Add("Item Amount");
                 comboBoxItemsSorting.Items.Add("Unit");
                 comboBoxItemsSorting.Items.Add("Item Description");
@@ -199,8 +199,8 @@ namespace MDSapp3
 
             //MessageBox.Show(guid);
 
-            model_t_Items.OrderID = r;  ;/// Convert.ToInt64(guid.ToString());
-
+            model_t_Items.ItemID = r;  ;/// Convert.ToInt64(guid.ToString());
+            //MessageBox.Show(model_t_Items.ItemID.ToString());
             using (testDBEntities db = new testDBEntities())
             {
 
@@ -318,9 +318,9 @@ namespace MDSapp3
             {
 
 
-                if (comboBoxItemsSorting.Text == "Order ID")
+                if (comboBoxItemsSorting.Text == "Items ID")
                 {
-                    dataGridViewItems.DataSource = db.t_Items.OrderBy(x => x.OrderID).ToList<t_Items>();
+                    dataGridViewItems.DataSource = db.t_Items.OrderBy(x => x.ItemID).ToList<t_Items>();
 
                 }
                 else if (comboBoxItemsSorting.Text == "Item Amount")
@@ -351,9 +351,9 @@ namespace MDSapp3
 
                 
 
-                if  (comboBoxItemsSorting.Text == "Order ID")
+                if  (comboBoxItemsSorting.Text == "Items ID")
                 {
-                    dataGridViewItems.DataSource = db.t_Items.OrderByDescending(x => x.OrderID).ToList<t_Items>();
+                    dataGridViewItems.DataSource = db.t_Items.OrderByDescending(x => x.ItemID).ToList<t_Items>();
 
                 }else if(comboBoxItemsSorting.Text == "Item Amount")
                 {

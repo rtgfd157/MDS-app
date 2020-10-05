@@ -87,12 +87,6 @@
             this.buttonItemsCancel = new System.Windows.Forms.Button();
             this.buttonItemsSearch = new System.Windows.Forms.Button();
             this.dataGridViewItems = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemU_M = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageMeasurementUnit = new System.Windows.Forms.TabPage();
             this.label_U_M_Crud = new System.Windows.Forms.Label();
             this.panel_U_M = new System.Windows.Forms.Panel();
@@ -111,6 +105,12 @@
             this.M_U_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.M_U_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageOrderItems = new System.Windows.Forms.TabPage();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemU_M = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.tabPage_Order.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).BeginInit();
@@ -716,7 +716,7 @@
             this.dataGridViewItems.ColumnHeadersHeight = 100;
             this.dataGridViewItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
-            this.OrderID,
+            this.ItemID,
             this.ItemAmount,
             this.ItemPrice,
             this.ItemU_M,
@@ -729,56 +729,6 @@
             this.dataGridViewItems.Size = new System.Drawing.Size(779, 529);
             this.dataGridViewItems.TabIndex = 0;
             this.dataGridViewItems.DoubleClick += new System.EventHandler(this.dataGridViewItems_DoubleClick);
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // OrderID
-            // 
-            this.OrderID.DataPropertyName = "OrderID";
-            this.OrderID.HeaderText = "Order ID";
-            this.OrderID.Name = "OrderID";
-            this.OrderID.ReadOnly = true;
-            this.OrderID.Width = 139;
-            // 
-            // ItemAmount
-            // 
-            this.ItemAmount.DataPropertyName = "ItemAmount";
-            this.ItemAmount.HeaderText = "Item Amount";
-            this.ItemAmount.Name = "ItemAmount";
-            this.ItemAmount.ReadOnly = true;
-            this.ItemAmount.Width = 139;
-            // 
-            // ItemPrice
-            // 
-            this.ItemPrice.DataPropertyName = "ItemPrice";
-            this.ItemPrice.HeaderText = "Item Price";
-            this.ItemPrice.Name = "ItemPrice";
-            this.ItemPrice.ReadOnly = true;
-            this.ItemPrice.Width = 140;
-            // 
-            // ItemU_M
-            // 
-            this.ItemU_M.DataPropertyName = "ItemU_M";
-            this.ItemU_M.HeaderText = "Unit";
-            this.ItemU_M.MinimumWidth = 10;
-            this.ItemU_M.Name = "ItemU_M";
-            this.ItemU_M.ReadOnly = true;
-            this.ItemU_M.ToolTipText = "Measuremnt Unit";
-            this.ItemU_M.Width = 139;
-            // 
-            // ItemDescription
-            // 
-            this.ItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ItemDescription.DataPropertyName = "ItemDescription";
-            this.ItemDescription.HeaderText = "Item Description";
-            this.ItemDescription.Name = "ItemDescription";
-            this.ItemDescription.ReadOnly = true;
             // 
             // tabPageMeasurementUnit
             // 
@@ -971,6 +921,56 @@
             this.tabPageOrderItems.TabIndex = 3;
             this.tabPageOrderItems.Text = "Order - Items";
             // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // ItemID
+            // 
+            this.ItemID.DataPropertyName = "ItemID";
+            this.ItemID.HeaderText = "Items ID";
+            this.ItemID.Name = "ItemID";
+            this.ItemID.ReadOnly = true;
+            this.ItemID.Width = 139;
+            // 
+            // ItemAmount
+            // 
+            this.ItemAmount.DataPropertyName = "ItemAmount";
+            this.ItemAmount.HeaderText = "Item Amount";
+            this.ItemAmount.Name = "ItemAmount";
+            this.ItemAmount.ReadOnly = true;
+            this.ItemAmount.Width = 139;
+            // 
+            // ItemPrice
+            // 
+            this.ItemPrice.DataPropertyName = "ItemPrice";
+            this.ItemPrice.HeaderText = "Item Price";
+            this.ItemPrice.Name = "ItemPrice";
+            this.ItemPrice.ReadOnly = true;
+            this.ItemPrice.Width = 140;
+            // 
+            // ItemU_M
+            // 
+            this.ItemU_M.DataPropertyName = "ItemU_M";
+            this.ItemU_M.HeaderText = "Unit";
+            this.ItemU_M.MinimumWidth = 10;
+            this.ItemU_M.Name = "ItemU_M";
+            this.ItemU_M.ReadOnly = true;
+            this.ItemU_M.ToolTipText = "Measuremnt Unit";
+            this.ItemU_M.Width = 139;
+            // 
+            // ItemDescription
+            // 
+            this.ItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ItemDescription.DataPropertyName = "ItemDescription";
+            this.ItemDescription.HeaderText = "Item Description";
+            this.ItemDescription.Name = "ItemDescription";
+            this.ItemDescription.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1041,12 +1041,6 @@
         private System.Windows.Forms.Label labelItemsMeasuremntUnit;
         private System.Windows.Forms.RichTextBox richTextBoxItemsDesc;
         private System.Windows.Forms.Label labelItemsDesc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemU_M;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemDescription;
         private System.Windows.Forms.ComboBox comboBoxItemsSorting;
         private System.Windows.Forms.DataGridView dataGridViewOrders;
         private System.Windows.Forms.ComboBox comboBoxOrdersSorting;
@@ -1083,6 +1077,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn RefaundAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerCity;
         private System.Windows.Forms.TabPage tabPageOrderItems;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemU_M;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemDescription;
     }
 }
 

@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="ItemU_M_Helper.cs" />
     <Compile Include="MDSAppSharedFunction.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="t_Items.cs">

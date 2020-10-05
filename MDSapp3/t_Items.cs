@@ -15,10 +15,10 @@ namespace MDSapp3
     public partial class t_Items
     {
         public long ID { get; set; }
-        public long OrderID { get; set; }
         public string ItemDescription { get; set; }
         public decimal ItemAmount { get; set; }
         public Nullable<decimal> ItemPrice { get; set; }
         public string ItemU_M { get; set; }
+        public long ItemID { get; set; }
     }
 }

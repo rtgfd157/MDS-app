@@ -5,11 +5,11 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="OrderID" Type="Int64" Nullable="false" />
     <Property Name="ItemDescription" Type="String" MaxLength="80" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="ItemAmount" Type="Decimal" Precision="12" Scale="3" Nullable="false" />
     <Property Name="ItemPrice" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="ItemU_M" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ItemID" Type="Int64" Nullable="false" />
   </EntityType>
   <EntityType Name="t_ItemU_M">
     <Key>

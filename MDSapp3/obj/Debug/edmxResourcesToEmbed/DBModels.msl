@@ -4,8 +4,8 @@
     <EntitySetMapping Name="t_Items">
       <EntityTypeMapping TypeName="testModel.t_Items">
         <MappingFragment StoreEntitySet="t_Items">
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
           <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
           <ScalarProperty Name="ItemAmount" ColumnName="ItemAmount" />
           <ScalarProperty Name="ItemPrice" ColumnName="ItemPrice" />

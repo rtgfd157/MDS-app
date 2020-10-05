@@ -5,7 +5,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="OrderID" Type="bigint" Nullable="false" />
+    <Property Name="ItemID" Type="bigint" Nullable="false" />
     <Property Name="ItemDescription" Type="nchar" MaxLength="80" Nullable="false" />
     <Property Name="ItemAmount" Type="decimal" Precision="12" Scale="3" Nullable="false" />
     <Property Name="ItemPrice" Type="decimal" Precision="18" Scale="2" />
@@ -22,7 +22,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="OrderNumber" Type="nchar" MaxLength="30" Nullable="false" />
     <Property Name="OrderDate" Type="date" Nullable="false" />
     <Property Name="CustomerName" Type="nchar" MaxLength="50" Nullable="false" />
