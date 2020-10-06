@@ -5,9 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e83c918412d14255ac071d2aa1d436cd" Name="Diagram1">
-        <EntityTypeShape EntityType="testModel.t_Items" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.t_ItemU_M" Width="1.5" PointX="2.875" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.t_Orders" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.t_Items" Width="1.5" PointX="1.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.t_ItemU_M" Width="1.5" PointX="1.375" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.t_Orders" Width="1.5" PointX="3.375" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.OrdersItem" Width="1.5" PointX="3.75" PointY="0.625" />
+        <AssociationConnector Association="testModel.FK__OrdersIte__Item___5165187F" />
+        <AssociationConnector Association="testModel.FK__OrdersIte__Order__52593CB8" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

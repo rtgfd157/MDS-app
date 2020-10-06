@@ -28,9 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_Order = new System.Windows.Forms.TabPage();
+            this.panelOrderItemQuick = new System.Windows.Forms.Panel();
+            this.buttonOrderItemsInOrderTab = new System.Windows.Forms.Button();
+            this.comboBoxOrderItemsInAddOrderTab = new System.Windows.Forms.ComboBox();
+            this.labelOrderItemQuick = new System.Windows.Forms.Label();
             this.textBoxOrdersCustomerCity = new System.Windows.Forms.TextBox();
             this.labelOrdersCustCity = new System.Windows.Forms.Label();
             this.comboBoxOrdersSorting = new System.Windows.Forms.ComboBox();
@@ -87,6 +91,12 @@
             this.buttonItemsCancel = new System.Windows.Forms.Button();
             this.buttonItemsSearch = new System.Windows.Forms.Button();
             this.dataGridViewItems = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemU_M = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageMeasurementUnit = new System.Windows.Forms.TabPage();
             this.label_U_M_Crud = new System.Windows.Forms.Label();
             this.panel_U_M = new System.Windows.Forms.Panel();
@@ -104,15 +114,12 @@
             this.dataGridView_U_M = new System.Windows.Forms.DataGridView();
             this.M_U_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.M_U_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabPageOrderItems = new System.Windows.Forms.TabPage();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemU_M = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBoxOrderNumberInOrderTab = new System.Windows.Forms.TextBox();
+            this.buttonOrderitemsInListDel = new System.Windows.Forms.Button();
+            this.comboBoxOrderitemsInListDel = new System.Windows.Forms.ComboBox();
             this.tabControl.SuspendLayout();
             this.tabPage_Order.SuspendLayout();
+            this.panelOrderItemQuick.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).BeginInit();
             this.tabPagItems.SuspendLayout();
             this.panelItems.SuspendLayout();
@@ -127,7 +134,6 @@
             this.tabControl.Controls.Add(this.tabPage_Order);
             this.tabControl.Controls.Add(this.tabPagItems);
             this.tabControl.Controls.Add(this.tabPageMeasurementUnit);
-            this.tabControl.Controls.Add(this.tabPageOrderItems);
             this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.tabControl.HotTrack = true;
             this.tabControl.Location = new System.Drawing.Point(13, 13);
@@ -139,6 +145,7 @@
             // tabPage_Order
             // 
             this.tabPage_Order.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.tabPage_Order.Controls.Add(this.panelOrderItemQuick);
             this.tabPage_Order.Controls.Add(this.textBoxOrdersCustomerCity);
             this.tabPage_Order.Controls.Add(this.labelOrdersCustCity);
             this.tabPage_Order.Controls.Add(this.comboBoxOrdersSorting);
@@ -153,8 +160,6 @@
             this.tabPage_Order.Controls.Add(this.buttonOrdersSearch);
             this.tabPage_Order.Controls.Add(this.textBoxRefaundAmount);
             this.tabPage_Order.Controls.Add(this.labelOrdersRefaundAmount);
-            this.tabPage_Order.Controls.Add(this.textBoxOrdersToatl);
-            this.tabPage_Order.Controls.Add(this.labelOrdersTotalAmount);
             this.tabPage_Order.Controls.Add(this.textBoxCustomerPhone);
             this.tabPage_Order.Controls.Add(this.labelOrdersCustomerPhone);
             this.tabPage_Order.Controls.Add(this.textBoxOrdersCust_Adress);
@@ -169,7 +174,51 @@
             this.tabPage_Order.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage_Order.Size = new System.Drawing.Size(1204, 541);
             this.tabPage_Order.TabIndex = 0;
-            this.tabPage_Order.Text = "Order";
+            this.tabPage_Order.Text = "Orders";
+            this.tabPage_Order.Enter += new System.EventHandler(this.tabPage_Order_Enter);
+            // 
+            // panelOrderItemQuick
+            // 
+            this.panelOrderItemQuick.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelOrderItemQuick.Controls.Add(this.buttonOrderitemsInListDel);
+            this.panelOrderItemQuick.Controls.Add(this.comboBoxOrderitemsInListDel);
+            this.panelOrderItemQuick.Controls.Add(this.textBoxOrderNumberInOrderTab);
+            this.panelOrderItemQuick.Controls.Add(this.buttonOrderItemsInOrderTab);
+            this.panelOrderItemQuick.Controls.Add(this.comboBoxOrderItemsInAddOrderTab);
+            this.panelOrderItemQuick.Controls.Add(this.labelOrderItemQuick);
+            this.panelOrderItemQuick.Controls.Add(this.labelOrdersTotalAmount);
+            this.panelOrderItemQuick.Controls.Add(this.textBoxOrdersToatl);
+            this.panelOrderItemQuick.Location = new System.Drawing.Point(441, 432);
+            this.panelOrderItemQuick.Name = "panelOrderItemQuick";
+            this.panelOrderItemQuick.Size = new System.Drawing.Size(757, 100);
+            this.panelOrderItemQuick.TabIndex = 41;
+            // 
+            // buttonOrderItemsInOrderTab
+            // 
+            this.buttonOrderItemsInOrderTab.Location = new System.Drawing.Point(689, 6);
+            this.buttonOrderItemsInOrderTab.Name = "buttonOrderItemsInOrderTab";
+            this.buttonOrderItemsInOrderTab.Size = new System.Drawing.Size(63, 37);
+            this.buttonOrderItemsInOrderTab.TabIndex = 45;
+            this.buttonOrderItemsInOrderTab.Text = "Add";
+            this.buttonOrderItemsInOrderTab.UseVisualStyleBackColor = true;
+            this.buttonOrderItemsInOrderTab.Click += new System.EventHandler(this.buttonOrderItemsInOrderTab_Click);
+            // 
+            // comboBoxOrderItemsInAddOrderTab
+            // 
+            this.comboBoxOrderItemsInAddOrderTab.Location = new System.Drawing.Point(423, 11);
+            this.comboBoxOrderItemsInAddOrderTab.Name = "comboBoxOrderItemsInAddOrderTab";
+            this.comboBoxOrderItemsInAddOrderTab.Size = new System.Drawing.Size(260, 32);
+            this.comboBoxOrderItemsInAddOrderTab.TabIndex = 44;
+            // 
+            // labelOrderItemQuick
+            // 
+            this.labelOrderItemQuick.AutoSize = true;
+            this.labelOrderItemQuick.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelOrderItemQuick.Location = new System.Drawing.Point(3, 11);
+            this.labelOrderItemQuick.Name = "labelOrderItemQuick";
+            this.labelOrderItemQuick.Size = new System.Drawing.Size(131, 24);
+            this.labelOrderItemQuick.TabIndex = 42;
+            this.labelOrderItemQuick.Text = "Order Items :";
             // 
             // textBoxOrdersCustomerCity
             // 
@@ -192,7 +241,7 @@
             // comboBoxOrdersSorting
             // 
             this.comboBoxOrdersSorting.FormattingEnabled = true;
-            this.comboBoxOrdersSorting.Location = new System.Drawing.Point(493, 438);
+            this.comboBoxOrdersSorting.Location = new System.Drawing.Point(79, 496);
             this.comboBoxOrdersSorting.Name = "comboBoxOrdersSorting";
             this.comboBoxOrdersSorting.Size = new System.Drawing.Size(148, 32);
             this.comboBoxOrdersSorting.TabIndex = 38;
@@ -201,7 +250,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label3.Location = new System.Drawing.Point(744, 440);
+            this.label3.Location = new System.Drawing.Point(330, 498);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(23, 33);
             this.label3.TabIndex = 37;
@@ -209,7 +258,7 @@
             // 
             // buttonOrderDesc
             // 
-            this.buttonOrderDesc.Location = new System.Drawing.Point(769, 438);
+            this.buttonOrderDesc.Location = new System.Drawing.Point(355, 496);
             this.buttonOrderDesc.Name = "buttonOrderDesc";
             this.buttonOrderDesc.Size = new System.Drawing.Size(80, 33);
             this.buttonOrderDesc.TabIndex = 36;
@@ -219,7 +268,7 @@
             // 
             // buttonOrderAsc
             // 
-            this.buttonOrderAsc.Location = new System.Drawing.Point(647, 438);
+            this.buttonOrderAsc.Location = new System.Drawing.Point(233, 496);
             this.buttonOrderAsc.Name = "buttonOrderAsc";
             this.buttonOrderAsc.Size = new System.Drawing.Size(91, 33);
             this.buttonOrderAsc.TabIndex = 35;
@@ -230,7 +279,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(413, 438);
+            this.label4.Location = new System.Drawing.Point(-1, 496);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 24);
             this.label4.TabIndex = 34;
@@ -239,7 +288,7 @@
             // buttonOrdersDel
             // 
             this.buttonOrdersDel.ForeColor = System.Drawing.Color.DarkRed;
-            this.buttonOrdersDel.Location = new System.Drawing.Point(327, 432);
+            this.buttonOrdersDel.Location = new System.Drawing.Point(355, 432);
             this.buttonOrdersDel.Name = "buttonOrdersDel";
             this.buttonOrdersDel.Size = new System.Drawing.Size(80, 37);
             this.buttonOrdersDel.TabIndex = 33;
@@ -270,7 +319,7 @@
             // 
             // buttonOrdersCancel
             // 
-            this.buttonOrdersCancel.Location = new System.Drawing.Point(237, 432);
+            this.buttonOrdersCancel.Location = new System.Drawing.Point(240, 432);
             this.buttonOrdersCancel.Name = "buttonOrdersCancel";
             this.buttonOrdersCancel.Size = new System.Drawing.Size(84, 37);
             this.buttonOrdersCancel.TabIndex = 30;
@@ -280,7 +329,7 @@
             // 
             // buttonOrdersSearch
             // 
-            this.buttonOrdersSearch.Location = new System.Drawing.Point(140, 432);
+            this.buttonOrdersSearch.Location = new System.Drawing.Point(136, 432);
             this.buttonOrdersSearch.Name = "buttonOrdersSearch";
             this.buttonOrdersSearch.Size = new System.Drawing.Size(91, 37);
             this.buttonOrdersSearch.TabIndex = 29;
@@ -307,18 +356,19 @@
             // 
             // textBoxOrdersToatl
             // 
-            this.textBoxOrdersToatl.Location = new System.Drawing.Point(517, 390);
+            this.textBoxOrdersToatl.Location = new System.Drawing.Point(259, 9);
             this.textBoxOrdersToatl.Name = "textBoxOrdersToatl";
+            this.textBoxOrdersToatl.ReadOnly = true;
             this.textBoxOrdersToatl.Size = new System.Drawing.Size(124, 29);
             this.textBoxOrdersToatl.TabIndex = 10;
             // 
             // labelOrdersTotalAmount
             // 
             this.labelOrdersTotalAmount.AutoSize = true;
-            this.labelOrdersTotalAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelOrdersTotalAmount.Location = new System.Drawing.Point(350, 397);
+            this.labelOrdersTotalAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelOrdersTotalAmount.Location = new System.Drawing.Point(138, 14);
             this.labelOrdersTotalAmount.Name = "labelOrdersTotalAmount";
-            this.labelOrdersTotalAmount.Size = new System.Drawing.Size(145, 25);
+            this.labelOrdersTotalAmount.Size = new System.Drawing.Size(121, 20);
             this.labelOrdersTotalAmount.TabIndex = 9;
             this.labelOrdersTotalAmount.Text = "Total Amount:";
             // 
@@ -724,11 +774,61 @@
             this.dataGridViewItems.Location = new System.Drawing.Point(6, 6);
             this.dataGridViewItems.Name = "dataGridViewItems";
             this.dataGridViewItems.ReadOnly = true;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewItems.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewItems.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewItems.Size = new System.Drawing.Size(779, 529);
             this.dataGridViewItems.TabIndex = 0;
             this.dataGridViewItems.DoubleClick += new System.EventHandler(this.dataGridViewItems_DoubleClick);
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // ItemID
+            // 
+            this.ItemID.DataPropertyName = "ItemID";
+            this.ItemID.HeaderText = "Items ID";
+            this.ItemID.Name = "ItemID";
+            this.ItemID.ReadOnly = true;
+            this.ItemID.Width = 139;
+            // 
+            // ItemAmount
+            // 
+            this.ItemAmount.DataPropertyName = "ItemAmount";
+            this.ItemAmount.HeaderText = "Item Amount";
+            this.ItemAmount.Name = "ItemAmount";
+            this.ItemAmount.ReadOnly = true;
+            this.ItemAmount.Width = 139;
+            // 
+            // ItemPrice
+            // 
+            this.ItemPrice.DataPropertyName = "ItemPrice";
+            this.ItemPrice.HeaderText = "Item Price";
+            this.ItemPrice.Name = "ItemPrice";
+            this.ItemPrice.ReadOnly = true;
+            this.ItemPrice.Width = 140;
+            // 
+            // ItemU_M
+            // 
+            this.ItemU_M.DataPropertyName = "ItemU_M";
+            this.ItemU_M.HeaderText = "Unit";
+            this.ItemU_M.MinimumWidth = 10;
+            this.ItemU_M.Name = "ItemU_M";
+            this.ItemU_M.ReadOnly = true;
+            this.ItemU_M.ToolTipText = "Measuremnt Unit";
+            this.ItemU_M.Width = 139;
+            // 
+            // ItemDescription
+            // 
+            this.ItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ItemDescription.DataPropertyName = "ItemDescription";
+            this.ItemDescription.HeaderText = "Item Description";
+            this.ItemDescription.Name = "ItemDescription";
+            this.ItemDescription.ReadOnly = true;
             // 
             // tabPageMeasurementUnit
             // 
@@ -755,6 +855,7 @@
             // 
             // panel_U_M
             // 
+            this.panel_U_M.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_U_M.Controls.Add(this.label_Slash);
             this.panel_U_M.Controls.Add(this.button_U_M_Desc);
             this.panel_U_M.Controls.Add(this.button_U_M_Asc);
@@ -911,65 +1012,33 @@
             this.M_U_Name.ReadOnly = true;
             this.M_U_Name.ToolTipText = "Kg, gram, etc ..";
             // 
-            // tabPageOrderItems
+            // textBoxOrderNumberInOrderTab
             // 
-            this.tabPageOrderItems.BackColor = System.Drawing.Color.LavenderBlush;
-            this.tabPageOrderItems.Location = new System.Drawing.Point(4, 33);
-            this.tabPageOrderItems.Name = "tabPageOrderItems";
-            this.tabPageOrderItems.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageOrderItems.Size = new System.Drawing.Size(1204, 541);
-            this.tabPageOrderItems.TabIndex = 3;
-            this.tabPageOrderItems.Text = "Order - Items";
+            this.textBoxOrderNumberInOrderTab.Location = new System.Drawing.Point(3, 64);
+            this.textBoxOrderNumberInOrderTab.Name = "textBoxOrderNumberInOrderTab";
+            this.textBoxOrderNumberInOrderTab.ReadOnly = true;
+            this.textBoxOrderNumberInOrderTab.Size = new System.Drawing.Size(256, 29);
+            this.textBoxOrderNumberInOrderTab.TabIndex = 46;
             // 
-            // ID
+            // buttonOrderitemsInListDel
             // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
+            this.buttonOrderitemsInListDel.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.buttonOrderitemsInListDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.buttonOrderitemsInListDel.ForeColor = System.Drawing.Color.DarkRed;
+            this.buttonOrderitemsInListDel.Location = new System.Drawing.Point(689, 51);
+            this.buttonOrderitemsInListDel.Name = "buttonOrderitemsInListDel";
+            this.buttonOrderitemsInListDel.Size = new System.Drawing.Size(63, 37);
+            this.buttonOrderitemsInListDel.TabIndex = 48;
+            this.buttonOrderitemsInListDel.Text = "Del";
+            this.buttonOrderitemsInListDel.UseVisualStyleBackColor = false;
+            this.buttonOrderitemsInListDel.Click += new System.EventHandler(this.buttonOrderitemsInListDel_Click);
             // 
-            // ItemID
+            // comboBoxOrderitemsInListDel
             // 
-            this.ItemID.DataPropertyName = "ItemID";
-            this.ItemID.HeaderText = "Items ID";
-            this.ItemID.Name = "ItemID";
-            this.ItemID.ReadOnly = true;
-            this.ItemID.Width = 139;
-            // 
-            // ItemAmount
-            // 
-            this.ItemAmount.DataPropertyName = "ItemAmount";
-            this.ItemAmount.HeaderText = "Item Amount";
-            this.ItemAmount.Name = "ItemAmount";
-            this.ItemAmount.ReadOnly = true;
-            this.ItemAmount.Width = 139;
-            // 
-            // ItemPrice
-            // 
-            this.ItemPrice.DataPropertyName = "ItemPrice";
-            this.ItemPrice.HeaderText = "Item Price";
-            this.ItemPrice.Name = "ItemPrice";
-            this.ItemPrice.ReadOnly = true;
-            this.ItemPrice.Width = 140;
-            // 
-            // ItemU_M
-            // 
-            this.ItemU_M.DataPropertyName = "ItemU_M";
-            this.ItemU_M.HeaderText = "Unit";
-            this.ItemU_M.MinimumWidth = 10;
-            this.ItemU_M.Name = "ItemU_M";
-            this.ItemU_M.ReadOnly = true;
-            this.ItemU_M.ToolTipText = "Measuremnt Unit";
-            this.ItemU_M.Width = 139;
-            // 
-            // ItemDescription
-            // 
-            this.ItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ItemDescription.DataPropertyName = "ItemDescription";
-            this.ItemDescription.HeaderText = "Item Description";
-            this.ItemDescription.Name = "ItemDescription";
-            this.ItemDescription.ReadOnly = true;
+            this.comboBoxOrderitemsInListDel.Location = new System.Drawing.Point(423, 55);
+            this.comboBoxOrderitemsInListDel.Name = "comboBoxOrderitemsInListDel";
+            this.comboBoxOrderitemsInListDel.Size = new System.Drawing.Size(260, 32);
+            this.comboBoxOrderitemsInListDel.TabIndex = 47;
             // 
             // Form1
             // 
@@ -984,6 +1053,8 @@
             this.tabControl.ResumeLayout(false);
             this.tabPage_Order.ResumeLayout(false);
             this.tabPage_Order.PerformLayout();
+            this.panelOrderItemQuick.ResumeLayout(false);
+            this.panelOrderItemQuick.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).EndInit();
             this.tabPagItems.ResumeLayout(false);
             this.tabPagItems.PerformLayout();
@@ -1076,13 +1147,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn RefaundAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerCity;
-        private System.Windows.Forms.TabPage tabPageOrderItems;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemU_M;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemDescription;
+        private System.Windows.Forms.Panel panelOrderItemQuick;
+        private System.Windows.Forms.Label labelOrderItemQuick;
+        private System.Windows.Forms.Button buttonOrderItemsInOrderTab;
+        private System.Windows.Forms.ComboBox comboBoxOrderItemsInAddOrderTab;
+        private System.Windows.Forms.TextBox textBoxOrderNumberInOrderTab;
+        private System.Windows.Forms.Button buttonOrderitemsInListDel;
+        private System.Windows.Forms.ComboBox comboBoxOrderitemsInListDel;
     }
 }
 

@@ -36,5 +36,30 @@
     <EntitySet Name="t_Items" EntityType="Self.t_Items" />
     <EntitySet Name="t_ItemU_M" EntityType="Self.t_ItemU_M" />
     <EntitySet Name="t_Orders" EntityType="Self.t_Orders" />
+    <EntitySet Name="OrdersItems" EntityType="testModel.OrdersItem" />
+    <AssociationSet Name="FK__OrdersIte__Item___5165187F" Association="testModel.FK__OrdersIte__Item___5165187F">
+      <End Role="t_Items" EntitySet="t_Items" />
+      <End Role="OrdersItem" EntitySet="OrdersItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrdersIte__Order__52593CB8" Association="testModel.FK__OrdersIte__Order__52593CB8">
+      <End Role="t_Orders" EntitySet="t_Orders" />
+      <End Role="OrdersItem" EntitySet="OrdersItems" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="OrdersItem">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="t_Items" Relationship="testModel.FK__OrdersIte__Item___5165187F" FromRole="OrdersItem" ToRole="t_Items" />
+    <NavigationProperty Name="t_Orders" Relationship="testModel.FK__OrdersIte__Order__52593CB8" FromRole="OrdersItem" ToRole="t_Orders" />
+  </EntityType>
+  <Association Name="FK__OrdersIte__Item___5165187F">
+    <End Type="testModel.t_Items" Role="t_Items" Multiplicity="1" />
+    <End Type="testModel.OrdersItem" Role="OrdersItem" Multiplicity="*" />
+  </Association>
+  <Association Name="FK__OrdersIte__Order__52593CB8">
+    <End Type="testModel.t_Orders" Role="t_Orders" Multiplicity="1" />
+    <End Type="testModel.OrdersItem" Role="OrdersItem" Multiplicity="*" />
+  </Association>
 </Schema>

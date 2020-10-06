@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="testModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="OrdersItems">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Item_Id" Type="bigint" Nullable="false" />
+    <Property Name="OrderId" Type="bigint" Nullable="false" />
+  </EntityType>
   <EntityType Name="t_Items">
     <Key>
       <PropertyRef Name="ID" />
@@ -32,9 +40,42 @@
     <Property Name="RefaundAmount" Type="decimal" Precision="18" Scale="2" />
     <Property Name="CustomerCity" Type="nchar" MaxLength="30" />
   </EntityType>
+  <Association Name="FK__OrdersIte__Item___5165187F">
+    <End Role="t_Items" Type="Self.t_Items" Multiplicity="1" />
+    <End Role="OrdersItems" Type="Self.OrdersItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_Items">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrdersItems">
+        <PropertyRef Name="Item_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrdersIte__Order__52593CB8">
+    <End Role="t_Orders" Type="Self.t_Orders" Multiplicity="1" />
+    <End Role="OrdersItems" Type="Self.OrdersItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_Orders">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrdersItems">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="testModelStoreContainer">
+    <EntitySet Name="OrdersItems" EntityType="Self.OrdersItems" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="t_Items" EntityType="Self.t_Items" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="t_ItemU_M" EntityType="Self.t_ItemU_M" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="t_Orders" EntityType="Self.t_Orders" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__OrdersIte__Item___5165187F" Association="Self.FK__OrdersIte__Item___5165187F">
+      <End Role="t_Items" EntitySet="t_Items" />
+      <End Role="OrdersItems" EntitySet="OrdersItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrdersIte__Order__52593CB8" Association="Self.FK__OrdersIte__Order__52593CB8">
+      <End Role="t_Orders" EntitySet="t_Orders" />
+      <End Role="OrdersItems" EntitySet="OrdersItems" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -36,5 +36,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="OrdersItems">
+      <EntityTypeMapping TypeName="testModel.OrdersItem">
+        <MappingFragment StoreEntitySet="OrdersItems">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK__OrdersIte__Item___5165187F" TypeName="testModel.FK__OrdersIte__Item___5165187F" StoreEntitySet="OrdersItems">
+      <EndProperty Name="OrdersItem">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="t_Items">
+        <ScalarProperty Name="ID" ColumnName="Item_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK__OrdersIte__Order__52593CB8" TypeName="testModel.FK__OrdersIte__Order__52593CB8" StoreEntitySet="OrdersItems">
+      <EndProperty Name="OrdersItem">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="t_Orders">
+        <ScalarProperty Name="ID" ColumnName="OrderId" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

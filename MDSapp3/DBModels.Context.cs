@@ -28,5 +28,6 @@ namespace MDSapp3
         public virtual DbSet<t_Items> t_Items { get; set; }
         public virtual DbSet<t_ItemU_M> t_ItemU_M { get; set; }
         public virtual DbSet<t_Orders> t_Orders { get; set; }
+        public virtual DbSet<OrdersItem> OrdersItems { get; set; }
     }
 }
